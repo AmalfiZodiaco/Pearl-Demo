@@ -33,12 +33,12 @@ namespace it.amalfi.Pearl.audio
 
             if (volumeActualValue > volumeNewValue)
             {
-                volumeRange = new Range(volumeNewValue, volumeActualValue);
+                volumeRange.Set(volumeNewValue, volumeActualValue);
                 decrease = true;
             }
             else
             {
-                volumeRange = new Range(volumeActualValue, volumeNewValue);
+                volumeRange.Set(volumeActualValue, volumeNewValue);
                 decrease = false;
             }
             this.timer.ResetOn(time);
@@ -57,6 +57,7 @@ namespace it.amalfi.Pearl.audio
         public bool ObeyIsFinish()
         {
             Debug.Assert(timer != null);
+
             return timer.IsFinish();
         }
         #endregion

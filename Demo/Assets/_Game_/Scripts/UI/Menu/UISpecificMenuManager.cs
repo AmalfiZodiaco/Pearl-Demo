@@ -25,7 +25,7 @@ namespace it.demo.UI
         {
             AudioManager audioManager = SingletonPool.Get<AudioManager>();
             AudioEnum audioEnum = EnumExtend.ParseEnum<AudioEnum>(nameSlider);
-            audioManager.SetVolume(audioEnum, sliders[audioEnum].value);
+            audioManager.SetVolume(audioEnum, sliders[audioEnum].value, true);
         }
         #endregion
 

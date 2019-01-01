@@ -102,9 +102,8 @@ namespace it.amalfi.Pearl.pools
             listPool[obj.name] = new SpecificPoolManager(poolContainer, obj, max);
             return listPool[obj.name];
         }
+        #endregion
     }
 }
-
-#endregion
 
 

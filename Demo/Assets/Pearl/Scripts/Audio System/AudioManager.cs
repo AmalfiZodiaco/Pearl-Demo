@@ -50,20 +50,22 @@ namespace it.amalfi.Pearl.audio
         #region Interface Methods
 
         #region Public Methods
-        public void SetVolume(AudioEnum audioEnum, float value)
+        public void SetVolume(AudioEnum audioEnum, float value, bool isPercent)
         {
             Debug.Assert(value >= 0 && value <= 1);
 
-            value = MathfExtend.ChangeRange(value, rangeAudioDb);
-            AudioContainer container = GetLogicalComponent<ListAudioContainer>().GetContainer(audioEnum);
-            audioMixer.SetFloat(container.Name, value);
+            if (isPercent)
+                value = MathfExtend.ChangeRange(value, rangeAudioDb);
+            auxContainer = GetLogicalComponent<ListAudioContainer>().GetContainer(audioEnum);
+            audioMixer.SetFloat(auxContainer.Name, value);
         }
 
-        public void SetVolume(AudioEnum audioEnum, float value, float time, AnimationCurve curve = null)
+        public void SetVolume(AudioEnum audioEnum, float value, bool isPercent, float time, AnimationCurve curve = null)
         {
             Debug.Assert(value >= 0 && value <= 1 && time >= 0);
 
-            value = MathfExtend.ChangeRange(value, rangeAudioDb);
+            if (isPercent)
+                value = MathfExtend.ChangeRange(value, rangeAudioDb);
             auxContainer = GetLogicalComponent<ListAudioContainer>().GetContainer(audioEnum);
             audioMixer.GetFloat(auxContainer.Name, out volumeMixer);
 

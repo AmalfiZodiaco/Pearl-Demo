@@ -46,6 +46,5 @@ namespace it.amalfi.Pearl.pools
             public GameObject Obj { get {return obj;} }
             public int NumberElementsInPool { get { return numberElementsInPool; } }
         }
-
     }
 }

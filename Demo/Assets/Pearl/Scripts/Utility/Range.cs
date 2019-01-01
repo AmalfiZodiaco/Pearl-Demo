@@ -5,7 +5,7 @@ namespace it.amalfi.Pearl
     /// <summary>
     /// A structure that represents a range of numbers
     /// </summary>
-    public struct Range
+    public class Range
     {
         #region private Fields
         [SerializeField]
@@ -19,6 +19,13 @@ namespace it.amalfi.Pearl
 
         #region Constructors
         public Range(float min, float max)
+        {
+            Set(min, max);
+        }
+        #endregion
+
+        #region Set
+        public void Set(float min, float max)
         {
             if (min < max)
             {
