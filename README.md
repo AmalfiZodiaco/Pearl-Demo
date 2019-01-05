@@ -1,19 +1,16 @@
-# Pearl-Demo
-Pearl Demo
+#Pearl Demo
 
-Questa demo in Unity mostra concretamente come funziona Pearl.
+This demo in Unity shows concretely how Pearl works.
+The demo was created with NET 4.0 and Unity 2017 LTS.
 
-Per le Api di Pearl vedere il repository: https://github.com/AmalfiZodiaco/Pearl-API
+For the Pearl API see the [repository](https://github.com/AmalfiZodiaco/Pearl-API)
 
-Il gioco inizia dalla scena StarMenu.
-I comandi sono:
+The game starts from the StarMenu scene. The commands are:
 
-w/a/d/s per camminare
-e per attaccare
-q per usare
+w / a / d / s to walk and to attach q to use
 
-Se si attacca il quadrato giallo spunterà una scritta nel debug.
-Se si preme "usa" sul quadrato giallo, la barra della vita si dimezza.
+If you attack the yellow square, a message will appear in the debug. If you press "use" on the yellow square, the life bar is halved.
 
-Nella Demo, la libreria di Pearl si trova nella cartella Pearl, invece nella cartella _Game_ si trovano i contenuti della demo specifica.
-Il pdf "PEARL GUIDE" è una guida di Pearl.
+In the game folder, Pearl's library is located in the "Pearl" folder, while the "_Game_" folder contains the contents of the specific demo.
+
+P.S: If you want to read a Pearl guide go [here](https://github.com/AmalfiZodiaco/Pearl-API)
