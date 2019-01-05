@@ -6,26 +6,33 @@ using it.amalfi.Pearl.events;
 namespace it.amalfi.Pearl
 {
     /// <summary>
-    /// This class created a game object that will be destroyed after a specific time.
-    /// The Destruction activates an event that represents action.
+    /// This component handles the destruction of a GameObject: it can destroy 
+    /// the GameObject after specific time and trigger an event to destroy it.
     /// </summary>
     public class DestructionElementManager : LogicalSimpleManager
     {
         #region Inspector Fields
+        /// <summary>
+        /// The time it takes to destroy the GameObject; if the time is zero, 
+        /// the GameObject is not destroyed.
+        /// </summary>
         [SerializeField]
         [Range(0f, 10f)]
-        private float time = 0f;
+        private float timeForDestroy = 0f;
         #endregion
 
         #region Events
+        /// <summary>
+        /// The event that is activated at the distraction of the gameobject
+        /// </summary>
         public event genericDelegate<GameObject> OnDestruction;
         #endregion
 
         #region Unity CallBacks
         private void OnEnable()
         {
-            if (time != 0)
-                StartCoroutine(DetroyGameObject(time));
+            if (timeForDestroy != 0)
+                StartCoroutine(DetroyGameObject(timeForDestroy));
         }
 
         private void OnDisable()

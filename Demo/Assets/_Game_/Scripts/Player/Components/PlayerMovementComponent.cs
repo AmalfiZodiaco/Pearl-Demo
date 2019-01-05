@@ -13,6 +13,7 @@ namespace it.demo.player
         private int countOldDirection = 4;
         private int ID;
         private List<Vector2> oldDirection;
+        private ForceManagerSystem forceManager;
         #endregion
 
         #region Propieties
@@ -24,6 +25,7 @@ namespace it.demo.player
         {
             InitMovementVar(ID, speed, direction, countOldDirection);
             InitDirectionSystem();
+            forceManager = EventsManager.GetIstance<ForceManagerSystem>();
         }
         #endregion
 
@@ -35,11 +37,11 @@ namespace it.demo.player
             this.ID = ID;
         }
 
-        #region Private Method
+        #region Public Method
         public void SetMovement(Vector2 valueInput)
         {
             CalculateDirection(valueInput);
-            SingletonPool.Get<ForceManagerSystem>().AddForce(ID, "movement", valueInput * speed);
+            forceManager.AddForce(ID, "movement", valueInput * speed);
         }
         #endregion
 
@@ -55,18 +57,14 @@ namespace it.demo.player
 
         private void CalculateDirection(Vector2 value)
         {
-            //calcola la direzione. Questo metodo è stato creato per avere la giusta direzione
-            //anche se il giocatore rilascia i due pulsante in diagonale
             if (value != Vector2.zero)
             {
                 oldDirection.RemoveAt(0);
                 oldDirection.Add(value);
             }
 
-            //caso di rilascio pulsante diagonali, prende la direzione di qualche frame precedente
             if (value == Vector2.zero && oldDirection[0].x != 0 && oldDirection[0].y != 0)
                 direction = oldDirection[0];
-            //caso normale: prende il frame attuale
             else
                 direction = oldDirection[oldDirection.Count - 1];
         }

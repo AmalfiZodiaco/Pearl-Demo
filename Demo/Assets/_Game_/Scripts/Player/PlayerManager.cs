@@ -42,7 +42,7 @@ namespace it.demo.player
         protected override void OnAwake()
         {
             mvComponent = GetLogicalComponent<PlayerMovementComponent>();
-            ForceManagerSystem forceManager = SingletonPool.Get<ForceManagerSystem>();
+            ForceManagerSystem forceManager = EventsManager.GetIstance<ForceManagerSystem>();
             forceManager.AddManagerForce(gameObject.GetInstanceID(), GetComponent<Rigidbody2D>(), gameObject);
         }
 
@@ -68,10 +68,9 @@ namespace it.demo.player
         #region Interface Methods
 
         #region Add/Remove Methods in Events
-        protected override void SubscribEvents()
+        protected override void SubscribeEvents()
         {
             EventsManager.AddMethod<float>(EventAction.SendHealth, ReceiveHealth);
-
             EventsManager.AddMethod<Vector2>(EventAction.GetInputMovement, ReceiveInputMovement);
             EventsManager.AddMethod<EventAction>(EventAction.GetInputUse, ReceiveInputPower);
             EventsManager.AddMethod<EventAction>(EventAction.GetInputAttack, ReceiveInputPower);

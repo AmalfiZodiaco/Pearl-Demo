@@ -14,7 +14,6 @@ namespace it.amalfi.Pearl.actionTrigger
         protected override void OnAwake()
         {
             Informations = new Dictionary<string, object>();
-            SetAwake();
         }
 
         private void OnEnable()
@@ -37,7 +36,6 @@ namespace it.amalfi.Pearl.actionTrigger
 
         #region Abstract Methods
         public abstract void SetAction();
-        public abstract void SetAwake();
         #endregion
     }
 }

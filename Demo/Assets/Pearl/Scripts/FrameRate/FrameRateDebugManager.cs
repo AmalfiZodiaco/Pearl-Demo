@@ -4,11 +4,15 @@ using it.amalfi.Pearl.events;
 
 namespace it.amalfi.Pearl.frameRate
 {
+    /// <summary>
+    /// The class that writes the frameRate in UI
+    /// </summary>
     [RequireComponent(typeof(Text))]
     public class FrameRateDebugManager : LogicalSimpleManager
     {
         #region Private Fields
         private Text frameRateText;
+        private FrameRateManager frameRateManager;
         #endregion
 
         #region Unity CallBacks
@@ -16,24 +20,24 @@ namespace it.amalfi.Pearl.frameRate
         protected override void OnAwake()
         {
             frameRateText = GetComponent<Text>();
+            frameRateManager = EventsManager.GetIstance<FrameRateManager>();
+        }
+
+        private void Update()
+        {
+            SeeFPS(frameRateManager.FrameRate);
         }
         #endregion
 
-        #region Private Methods
-        private void SeeFPS(int FPS)
+        #region Public Methods
+        /// <summary>
+        /// Writes the framRate in the component text
+        /// </summary>
+        /// <param name = "FPS"> The current FrameRate</param>
+        public void SeeFPS(int FPS)
         {
             frameRateText.text = FPS.ToString() + " " + "FPS";
         }
         #endregion
-
-        protected override void SubscribEvents()
-        {
-            EventsManager.AddMethod<int>(EventAction.CallFrameRate, SeeFPS);
-        }
-
-        protected override void RemoveEvents()
-        {
-            EventsManager.RemoveMethod<int>(EventAction.CallFrameRate, SeeFPS);
-        }
     }
 }

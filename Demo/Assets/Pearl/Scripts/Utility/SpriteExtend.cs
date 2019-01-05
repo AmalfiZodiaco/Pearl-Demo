@@ -2,7 +2,7 @@
 
 namespace it.amalfi.Pearl
 {
-    public static class ExtendSprite
+    public static class SpriteExtend
     {
         public static Sprite Create(Texture2D texture)
         {

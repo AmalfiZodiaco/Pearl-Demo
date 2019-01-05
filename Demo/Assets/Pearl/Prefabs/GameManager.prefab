@@ -35,8 +35,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4941664243815180}
-  - component: {fileID: 114630393576926658}
   - component: {fileID: 114931597572610502}
+  - component: {fileID: 114630393576926658}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e903e95a8af5040930867b47f54cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSingleton: 0
 --- !u!114 &114630393576926658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,6 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af5e3d91513b2640ba4555efca84988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSingleton: 0
   isUnique: 1
 --- !u!114 &114774893017844688
 MonoBehaviour:
@@ -217,6 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a8162b645f5114ca46734a7b63d1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSingleton: 1
   audioMixer: {fileID: 24100000, guid: 3014847b96a6615408c3c50d27e8bfdd, type: 2}
 --- !u!114 &114931597572610502
 MonoBehaviour:
@@ -229,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e84367237fe65b4c86cfd30ce417390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSingleton: 1
   gameVersion: 1
   actualLevel: 0
   enableMouse: 0

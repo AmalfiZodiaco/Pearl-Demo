@@ -14,15 +14,12 @@ namespace it.amalfi.Pearl
         /// <param name = "transform"> The specific component transform</param>
         public static int NumberChild(this Transform transform)
         {
-            Transform parent = transform.parent;
-            if (parent)
+            if (transform.parent)
             {
-                int i = 0;
-                foreach (Transform child in parent)
+                for (int i = 0; i < transform.parent.childCount; i++)
                 {
-                    if (child.Equals(transform))
+                    if (transform.parent.GetChild(i).Equals(transform))
                         return i;
-                    i++;
                 }
             }
             return -1;

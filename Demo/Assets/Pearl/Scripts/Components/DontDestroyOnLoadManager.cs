@@ -9,6 +9,9 @@ namespace it.amalfi.Pearl
     public class DontDestroyOnLoadManager : LogicalSimpleManager
     {
         #region Inspector Fields
+        /// <summary>
+        //  If the Boolean is true, the GameObject will be unique and each of its clne will be eliminated in the scene
+        /// </summary>
         [SerializeField]
         private bool isUnique;
         #endregion
@@ -29,8 +32,7 @@ namespace it.amalfi.Pearl
         /// </summary>
         private bool ControlRepeat()
         {
-            GameObject aux = gameObject.FindNotMe<DontDestroyOnLoadManager>();
-            return aux != null;
+            return gameObject.FindNotMe<DontDestroyOnLoadManager>() != null;
         }
         #endregion
     }

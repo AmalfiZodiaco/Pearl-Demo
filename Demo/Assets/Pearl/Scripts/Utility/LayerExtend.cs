@@ -4,10 +4,11 @@ using System.Collections.Generic;
 namespace it.amalfi.Pearl
 {
     /// <summary>
-    /// This class takes care of creating useful functions for manage layer masks
+    /// This class takes care of creating useful functions for manage the layer masks
     /// </summary>
     public static class LayerExtend
     {
+        private static List<string> auxListString;
         private static readonly byte numberCells = 32;
 
         #region Public Methods
@@ -18,8 +19,8 @@ namespace it.amalfi.Pearl
         public static LayerMask CreateLayerMask(params string[] layers)
         {
             LayerMask layerMask = (LayerMask)0;
-            foreach (string name in layers)
-                layerMask |= (1 << LayerMask.NameToLayer(name));
+            for (int i = 0; i < layers.Length; i++)
+                layerMask |= (1 << LayerMask.NameToLayer(layers[i]));
             return layerMask;
         }
         #endregion
@@ -51,8 +52,7 @@ namespace it.amalfi.Pearl
         /// <param name = "layers"> The layers (in string) that will be removed</param>
         public static LayerMask RemoveFromMask(this LayerMask layerMask, params string[] layers)
         {
-            LayerMask invertedOriginal = ~layerMask;
-            return ~(invertedOriginal | CreateLayerMask(layers));
+            return ~(~layerMask | CreateLayerMask(layers));
         }
 
         /// <summary>
@@ -61,19 +61,18 @@ namespace it.amalfi.Pearl
         /// <param name = "layerMask"> The layerMask that contains the layers</param>
         public static string[] LayersInMask(this LayerMask layerMask)
         {
-            var output = new List<string>();
+            auxListString.Clear();
 
             for (int i = 0; i < numberCells; ++i)
             {
                 int shifted = 1 << i;
                 if ((layerMask & shifted) == shifted)
                 {
-                    string layerName = LayerMask.LayerToName(i);
-                    if (!string.IsNullOrEmpty(layerName))
-                        output.Add(layerName);
+                    if (!string.IsNullOrEmpty(LayerMask.LayerToName(i)))
+                        auxListString.Add(LayerMask.LayerToName(i));
                 }
             }
-            return output.ToArray();
+            return auxListString.ToArray();
         }
         #endregion
     }

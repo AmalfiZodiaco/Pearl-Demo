@@ -5,8 +5,14 @@ using UnityEngine;
 
 namespace it.amalfi.Pearl.level
 {
+    /// <summary>
+    /// The class manages the pause in the level
+    /// </summary>
     public class PauseComponents : LogicalComponent
     {
+        /// <summary>
+        /// Manages the pause in the level
+        /// </summary>
         public void PauseControl(bool pause)
         {
             if (pause)

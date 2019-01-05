@@ -5,13 +5,14 @@ namespace it.amalfi.Pearl
 {
     public static class EnumExtend
     {
+        private static int auxInteger;
+
         public static T GetRandom<T>() where T : struct, IConvertible
         {
             Debug.Assert(typeof(T).IsEnum);
 
-            int aux = Enum.GetNames(typeof(T)).Length;
-            aux = UnityEngine.Random.Range(0, aux);
-            return (T)Enum.ToObject(typeof(T), aux);
+            auxInteger = UnityEngine.Random.Range(0, Length<T>());
+            return (T)Enum.ToObject(typeof(T), auxInteger);
         }
 
         public static T ParseEnum<T>(string value)
@@ -21,7 +22,7 @@ namespace it.amalfi.Pearl
             return (T)Enum.Parse(typeof(T), value, true);
         }
 
-        public static int Lenght<T>() where T : struct, IConvertible
+        public static int Length<T>() where T : struct, IConvertible
         {
             Debug.Assert(typeof(T).IsEnum);
 
@@ -32,9 +33,9 @@ namespace it.amalfi.Pearl
         {
             Debug.Assert(typeof(T).IsEnum && Enum.GetNames(typeof(T)).Length == 2);
 
-            byte index = Convert.ToByte(value);
-            index = MathfExtend.AddValueInCircle(index, 1, 2);
-            return (T)Enum.ToObject(typeof(T), index);
+            auxInteger = Convert.ToInt32(value);
+            auxInteger = MathfExtend.AddValueInCircle(auxInteger, 1, 2);
+            return (T)Enum.ToObject(typeof(T), auxInteger);
         }
     }
 

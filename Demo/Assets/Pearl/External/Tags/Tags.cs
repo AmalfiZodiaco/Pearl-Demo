@@ -5,9 +5,10 @@
     /// </summary>
     public enum Tags
     {
-        Player,
         Panel,
         Pool,
+        //-------------------//
+        Player,
         Spawn,
         Power,
         Use,

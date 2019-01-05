@@ -4,37 +4,36 @@ namespace it.amalfi.Pearl.graph
 {
     public class Vertex<T>
     {
-        public T value;
-
+        #region Private Fields
+        private T value;
         private Dictionary<T, Arch<T>> neighbors;
+        #endregion
 
-        public Dictionary<T, Arch<T>>.ValueCollection Neighbors { get { return neighbors.Values; } }
-
+        #region Constructors
         public Vertex(T value)
         {
             this.value = value;
             neighbors = new Dictionary<T, Arch<T>>();
         }
+        #endregion
 
-        public Arch<T> this[T vertex]
-        {
-            get
-            {
-                return neighbors[vertex];
-            }
-        }
+        #region Properties
+        public Dictionary<T, Arch<T>>.ValueCollection Neighbors { get { return neighbors.Values; } }
+        public Arch<T> this[T vertex] { get { return neighbors[vertex]; } }
+        #endregion
 
-        public void AddEdge(Vertex<T> vertex, int weight)
+        #region Public methods
+        public void AddArch(Vertex<T> vertex, int weight)
         {
             neighbors.Update(vertex.value, new Arch<T>(vertex, weight));
         }
 
-        public void RemoveEdge(T vertex)
+        public void RemoveArch(T vertex)
         {
             neighbors.Remove(vertex);
         }
 
-        public bool HasEdge(T vertex)
+        public bool HasArch(T vertex)
         {
             return neighbors.ContainsKey(vertex);
         }
@@ -51,6 +50,7 @@ namespace it.amalfi.Pearl.graph
         {
             return -1584136870 + EqualityComparer<T>.Default.GetHashCode(value);
         }
+        #endregion
     }
 
 }

@@ -1,24 +1,33 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using it.amalfi.Pearl.audio;
 using it.amalfi.Pearl.events;
 using System;
-using it.amalfi.Pearl.input;
 using it.amalfi.Pearl.game;
 
 namespace it.amalfi.Pearl.UI
 {
+    /// <summary>
+    /// The abstract class of the UI.This class must be the parent of every UI of the menu or pause.
+    /// </summary>
     public abstract class UIMenuManager : LogicalManager
     {
         #region Inspector Fields
+        /// <summary>
+        /// The first activated element of the UI
+        /// </summary>
         [SerializeField]
         protected GameObject firstUIObjectEnable;
+        /// <summary>
+        /// The UI is the pre-game one or the one during the game
+        /// </summary>
         [SerializeField]
         private StateUI stateUI;
         #endregion
 
         #region Protected Fields
         protected bool isOpenUI = false;
+        protected VisibilityPanelComponent visibilityComponent;
+        protected SelectionPanelComponent selectionComponent;
         #endregion
 
         #region Private Fields
@@ -29,6 +38,8 @@ namespace it.amalfi.Pearl.UI
         // Use this for initialization
         private void Start()
         {
+            visibilityComponent = GetLogicalComponent<VisibilityPanelComponent>();
+            selectionComponent = GetLogicalComponent<SelectionPanelComponent>();
             InitOpenMenu();
         }
         #endregion
@@ -56,20 +67,29 @@ namespace it.amalfi.Pearl.UI
         #region Interface Methods
 
         #region UI interface Methods
+        /// <summary>
+        /// Calls The new Game
+        /// </summary>
         public void NewGame()
         {
             gameObject.SetActive(false);
-            GameManager.NewLevel(SceneEnum.Level);
+            EventsManager.GetIstance<GameManager>().NewLevel(SceneEnum.Level);
         }
 
+        /// <summary>
+        ///  This method must be called whenever you want to change the active button(and therefore often also panel)
+        /// </summary>
         public void ChangeButton(GameObject obj)
         {
-            if (GetLogicalComponent<VisibilityPanelComponent>().ObeyIsSamePanel(obj))
+            if (visibilityComponent.ObeyIsSamePanel(obj))
                 DoChangeButton(obj);
             else
                 DoChangePanel(obj);
         }
 
+        /// <summary>
+        /// Calls The quit game
+        /// </summary>
         public void Quit()
         {
             #if UNITY_STANDALONE
@@ -83,7 +103,7 @@ namespace it.amalfi.Pearl.UI
         #endregion
 
         #region Add/Remove Methods in Events
-        protected override void SubscribEvents()
+        protected override void SubscribeEvents()
         {
             EventsManager.AddMethod<bool>(EventAction.CallPause, ReceivePause);
             EventsManager.AddMethod(EventAction.GetInputEntryMenu, ReceiveInputOpenCloseMenu);
@@ -131,19 +151,19 @@ namespace it.amalfi.Pearl.UI
         #region Logical Methods
         protected void DoChangePanel(GameObject obj)
         {
-            GetLogicalComponent<VisibilityPanelComponent>().ObeyShow(obj, transform);
-            GetLogicalComponent<SelectionPanelComponent>().ObeyChangeSelectNext(obj);
+            visibilityComponent.ObeyShow(obj);
+            selectionComponent.ObeyChangeSelectNext(obj);
         }
 
         protected void DoCloseMenu()
         {
-            GetLogicalComponent<VisibilityPanelComponent>().ObeyOpenOrCloseAllPanels(false, transform);
-            GetLogicalComponent<SelectionPanelComponent>().ObeyReset();
+            visibilityComponent.ObeyOpenOrCloseAllPanels(false, transform);
+            selectionComponent.ObeyReset();
         }
 
         protected void DoChangeButton(GameObject obj)
         {
-            GetLogicalComponent<SelectionPanelComponent>().ObeyChangeSelectNext(obj);
+            selectionComponent.ObeyChangeSelectNext(obj);
         }
 
         protected void DoOpenCloseMenu()
@@ -156,10 +176,10 @@ namespace it.amalfi.Pearl.UI
         {
             if (isOpenUI)
             {
-                if (!GetLogicalComponent<SelectionPanelComponent>().IsOpenPage)
+                if (!selectionComponent.IsOpenPage)
                 {
-                    GetLogicalComponent<VisibilityPanelComponent>().ObeyShow(GetLogicalComponent<SelectionPanelComponent>().LastSelectedButton, transform);
-                    GetLogicalComponent<SelectionPanelComponent>().ObeyChangeInPreSelect();
+                    visibilityComponent.ObeyShow(GetLogicalComponent<SelectionPanelComponent>().LastSelectedButton);
+                    selectionComponent.ObeyChangeInPreSelect();
                 }
                 else if (stateUI == StateUI.Pause)
                     SendCallPause();

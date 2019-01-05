@@ -16,7 +16,7 @@ namespace it.demo.UI
         #endregion
 
         #region Subscrive Event
-        protected override void SubscribEvents()
+        protected override void SubscribeEvents()
         {
             EventsManager.AddMethod<float>(EventAction.SendHealth, ReceiveHealth);
         }

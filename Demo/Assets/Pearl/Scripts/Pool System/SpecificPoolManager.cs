@@ -62,9 +62,9 @@ namespace it.amalfi.Pearl.pools
         /// </summary>
         public void AllDisable()
         {
-            foreach (GameObject obj in listAble)
+            for (int i = 0; i < listAble.Count; i++)
             {
-                Disable(obj);
+                Disable(listAble[i]);
             }
         }
 
@@ -143,13 +143,9 @@ namespace it.amalfi.Pearl.pools
             aux.transform.position = position;
             aux.transform.rotation = quat;
             if (aux.GetComponent<Rigidbody>())
-            {
                 aux.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            }
             if (aux.GetComponent<Rigidbody2D>())
-            {
                 aux.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-            }
             return aux;
         }
 

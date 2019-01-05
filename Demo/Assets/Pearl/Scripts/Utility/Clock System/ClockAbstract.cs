@@ -49,7 +49,7 @@ namespace it.amalfi.Pearl.clock
         /// <summary>
         /// How much time has passed
         /// </summary>
-        public float ActualTime
+        public float Time
         {
             get
             {
@@ -58,24 +58,24 @@ namespace it.amalfi.Pearl.clock
                 if (this.pause)
                     return preservedTime;
                 else
-                    return Mathf.Min(ActualTimeWithoutLimit, limit);
+                    return Mathf.Min(AuxTime, limit);
             }
         }
 
-        protected float ActualTimeWithoutLimit
+        protected float AuxTime
         {
             get
             {
                 Debug.Assert(this.on);
 
-                return preservedTime + Time.time - this.timestart;
+                return preservedTime + UnityEngine.Time.time - this.timestart;
             }
         }
         #endregion
 
         #region Public Methods
         /// <summary>
-        /// Pause or Unpuase the clock
+        /// Pauses or Unpuases the clock
         /// </summary>
         /// <param name = "pause"> The bool rappresent if the clock must be pause or unpause.</param>
         public void Pause(bool pause)
@@ -85,15 +85,15 @@ namespace it.amalfi.Pearl.clock
             if (this.pause != pause)
             {
                 if (pause)
-                    this.preservedTime = ActualTime;
+                    this.preservedTime = Time;
                 else
-                    this.timestart = Time.time;
+                    this.timestart = UnityEngine.Time.time;
                 this.pause = pause;
             }
         }
 
         /// <summary>
-        /// Reset the timer in off
+        /// Resets the timer in off
         /// </summary>
         public void ResetOff()
         {

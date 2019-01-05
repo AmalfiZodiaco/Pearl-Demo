@@ -12,6 +12,8 @@ namespace it.amalfi.Pearl
         /// </summary>
         public enum InequalitySign { GraterOrEqual, Greater }
 
+        private static float auxFloat;
+
         #region Public Methods
         /// <summary>
         /// Returns true if the number is in the range that can be opened or closed(depends on the two signs)
@@ -72,8 +74,8 @@ namespace it.amalfi.Pearl
         {
             Debug.Assert(value >= originalRange.Min && value <= originalRange.Max);
 
-            float scale = (newRange.Max - newRange.Min) / (originalRange.Max - originalRange.Min);
-            return newRange.Min + ((value - originalRange.Min) * scale);
+            auxFloat = (newRange.Max - newRange.Min) / (originalRange.Max - originalRange.Min);
+            return newRange.Min + ((value - originalRange.Min) * auxFloat);
         }
 
         /// <summary>

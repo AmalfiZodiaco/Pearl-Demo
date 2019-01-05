@@ -10,7 +10,7 @@ namespace it.amalfi.Pearl.multitags
     /// </summary>
     public class MultiTags : LogicalSimpleManager
     {
-        #region Public Fields
+        #region Inspector Fields
         /// <summary>
         /// List of tags that the gameobject has.
         /// </summary>
@@ -19,10 +19,10 @@ namespace it.amalfi.Pearl.multitags
         #endregion
 
         #region Properties
-        public List<Tags> ListTags
-        {
-            get { return tags; }
-        }
+        /// <summary>
+        /// List of tags that the gameobject has.
+        /// </summary>
+        public List<Tags> ListTags { get { return tags; } }
         #endregion
 
         #region Unity CallBacks
@@ -36,6 +36,7 @@ namespace it.amalfi.Pearl.multitags
                 EliminateDuplicate();
                 tags.Sort();
             }
+
         }
         #endregion
 

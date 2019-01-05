@@ -4,6 +4,9 @@ using it.amalfi.Pearl.events;
 
 namespace it.amalfi.Pearl.UI
 {
+    /// <summary>
+    /// This component is responsible for activating or deactivating panels
+    /// </summary>
     public class VisibilityPanelComponent : LogicalComponent
     {
         #region Private Fields
@@ -12,34 +15,39 @@ namespace it.amalfi.Pearl.UI
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Check if the object panel is the same as the active panel.
+        /// </summary>
+        /// /// <param name = "obj"> The object to check</param>
         public bool ObeyIsSamePanel(GameObject obj)
         {
             auxPanel = FindPanelForSpecificUIObj(obj.transform).gameObject;
             return actualPanel.GetInstanceID() == auxPanel.GetInstanceID();
         }
 
-        public void ObeyShow(GameObject obj, Transform transform)
+        /// <summary>
+        /// Check if the object panel is the same as the active panel.
+        /// </summary>
+        /// /// <param name = "obj"> The object to check</param>
+        public void ObeyShow(GameObject obj)
         {
-            ObeyOpenOrCloseAllPanels(false, transform);
             actualPanel = FindPanelForSpecificUIObj(obj.transform)?.gameObject;
-            if (!actualPanel)
-            {
-                Debug.LogError("There isn't panel");
-                return;
-            }
+            ObeyOpenOrCloseAllPanels(false, actualPanel.transform.parent);
 
-            foreach (Transform child in transform)
-            {
-                child.gameObject.SetActive(false);
-            }
+            Debug.Assert(actualPanel, "There isn't panel");
+
             actualPanel.SetActive(true);
         }
 
+        /// <summary>
+        /// Open or close all panels
+        /// </summary>
+        /// /// <param name = "obj"> The object to check</param>
         public void ObeyOpenOrCloseAllPanels(bool open, Transform transform)
         {
-            foreach (Transform child in transform)
+            for (int i = 0; i < transform.childCount; i++)
             {
-                child.gameObject.SetActive(open);
+                transform.GetChild(i).gameObject.SetActive(open);
             }
         }
         #endregion

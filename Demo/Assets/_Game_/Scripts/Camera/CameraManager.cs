@@ -6,7 +6,7 @@ namespace it.demo.camera
     public class CameraManager : LogicalSimpleManager
     {
         #region Add/Remove Methods in Events
-        protected override void SubscribEvents()
+        protected override void SubscribeEvents()
         {
             EventsManager.AddMethod<Transform>(EventAction.CreatePlayer, CreateCamera);
         }

@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4263178828074566}
   - component: {fileID: 114764794288699410}
   - component: {fileID: 114070280871016662}
-  - component: {fileID: 95875701461873792}
-  - component: {fileID: 212878389753830916}
   - component: {fileID: 114535540949944202}
+  - component: {fileID: 212878389753830916}
+  - component: {fileID: 95875701461873792}
   - component: {fileID: 61037138202146940}
   - component: {fileID: 50455268230757878}
   m_Layer: 0
@@ -136,12 +136,12 @@ MonoBehaviour:
   maxHealth: 100
   power1:
     name: Use
-    prefab: {fileID: 1264766819331098, guid: 1ab7b7a5b846afd4ca61a396e1f1a299, type: 2}
+    prefab: {fileID: 1276124915045380, guid: 1ab7b7a5b846afd4ca61a396e1f1a299, type: 2}
     distanceForInstantiate: 1
     damage: 0
   power2:
     name: Attack
-    prefab: {fileID: 1165812420684218, guid: 8a1c7f21c53c44b419c6edb43ef90883, type: 2}
+    prefab: {fileID: 1215201833114664, guid: 8a1c7f21c53c44b419c6edb43ef90883, type: 2}
     distanceForInstantiate: 1
     damage: 1
 --- !u!114 &114764794288699410
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 769881ac22d807e458b5a3dc0b6ba2d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags: 00000000
+  tags: 02000000
 --- !u!212 &212878389753830916
 SpriteRenderer:
   m_ObjectHideFlags: 1

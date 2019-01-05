@@ -13,11 +13,11 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
-  - Blue
-  - Red
-  - BlueNormal
-  - RedNormal
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -43,10 +43,4 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Aim
-    uniqueID: 2583395789
-    locked: 0
-  - name: Pictogram
-    uniqueID: 2705248205
     locked: 0

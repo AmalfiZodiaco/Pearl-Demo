@@ -51,4 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a8162b645f5114ca46734a7b63d1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSingleton: 1
   audioMixer: {fileID: 24100000, guid: 3014847b96a6615408c3c50d27e8bfdd, type: 2}

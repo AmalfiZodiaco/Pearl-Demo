@@ -5,42 +5,34 @@ using UnityEngine;
 namespace it.amalfi.Pearl.events
 {
     /// <summary>
-    /// This class manages the communication between different gameobjects 
-    /// in a centralized way. For example, the gameobject A must 
-    /// receive instructions from the gamebject B: A subscribes to an 
-    /// event C of the "EventsManager" class, whereas when B wants to call A, it 
-    /// invokes the C event of the "EventsManager" class with the necessary parameters.
-    /// Event C invokes object A and all other objects subscribed to C.
-    /// The events are distinguished by an enumerator (EventAction).
+    /// This static class manages the communication between different gameobjects in a centralized way. 
+    /// For example, the gameobject "A" must receive instructions from the gamebject "B": 
+    /// A subscribes to an event "eV" of the "EventsManager" class. When "B" wants to call "A", it 
+    /// invokes the "eV" event of the "EventsManager" class with the necessary parameters.
+    /// Event "eV" invokes object "A" and all other objects subscribed to "eV".
+    /// The events are distinguished by an enumerator (EventAction). 
+    /// Moreover the class manages singleton
     /// </summary>
     public static class EventsManager
     {
         #region Private fields
-        /// <summary>
-        /// A dictionary that invokes the specific event from the enumerator
-        /// </summary>
         private static Dictionary<EventAction, Delegate> dictionaryEvent;
+        private static Dictionary<Type, LogicalSimpleManager> dictionarySingleton;
         #endregion
 
         #region Constructors
-        /// <summary>
-        /// The static constructor of this class
-        /// </summary>
         static EventsManager()
         {
+            dictionarySingleton = new Dictionary<Type, LogicalSimpleManager>();
             CreateDictonary();
         }
         #endregion
 
         #region Init Methods
-        /// <summary>
-        /// The method that creates events.The method creates as many events as 
-        /// the length of the enumerrator.
-        /// </summary>
         private static void CreateDictonary()
         {
             dictionaryEvent = new Dictionary<EventAction, Delegate>();
-            int lenght = EnumExtend.Lenght<EventAction>();
+            int lenght = EnumExtend.Length<EventAction>();
             for (int i = 0; i < lenght; i++)
             {
                 dictionaryEvent.Add((EventAction)i, null);
@@ -48,26 +40,55 @@ namespace it.amalfi.Pearl.events
         }
         #endregion
 
+        #region Singleton manager
+        private static void AddSingleton(LogicalSimpleManager[] istance)
+        {
+            Debug.Assert(istance.Length == 1, "There isn't Singleton or there too istances of singleton");
+            dictionarySingleton.Update(istance[0].GetType(), istance[0]);
+        }
+
+        private static bool IsntThereSingleton<T>()
+        {
+            return !dictionarySingleton.ContainsKey(typeof(T)) || dictionarySingleton[typeof(T)] == null;
+        }
+
+        /// <summary>
+        ///  Returns the T singleton istance
+        /// </summary>
+        public static T GetIstance<T>() where T : LogicalSimpleManager
+        {
+            if (IsntThereSingleton<T>())
+                AddSingleton(GameObject.FindObjectsOfType<T>());
+            return (T) dictionarySingleton[typeof(T)];
+        }
+        #endregion
+
         #region Add method in event
         /// <summary>
-        /// The function adds a method with zero parameters to a specific event
+        /// The function adds a action (method that returns void) with zero parameters to a specific event
         /// </summary>
+        /// <param name = "eventAction">The dictionary key associated with the event</param>
+        /// <param name = "action">The action</param>
         public static void AddMethod(EventAction eventAction, genericDelegate action)
         {
             dictionaryEvent[eventAction] = (genericDelegate)dictionaryEvent[eventAction] + action;
         }
 
         /// <summary>
-        /// The function adds a method with one parameter to a specific event
+        /// The function adds a action (method that returns void) with one parameter to a specific event
         /// </summary>
+        /// <param name = "eventAction">The dictionary key associated with the event</param>
+        /// <param name = "action">The action</param>
         public static void AddMethod<T>(EventAction eventAction, genericDelegate<T> action)
         {
             dictionaryEvent[eventAction] = (genericDelegate<T>)dictionaryEvent[eventAction] + action;
         }
 
         /// <summary>
-        /// The function adds a method with two parameters to a specific event
+        /// The function adds a action (method that returns void) with two parameters to a specific event
         /// </summary>
+        /// <param name = "eventAction">The dictionary key associated with the event</param>
+        /// <param name = "action">The action</param>
         public static void AddMethod<T, F>(EventAction eventAction, genericDelegate<T, F> action)
         {
             dictionaryEvent[eventAction] = (genericDelegate<T, F>)dictionaryEvent[eventAction] + action;
@@ -76,24 +97,30 @@ namespace it.amalfi.Pearl.events
 
         #region Remove method in event
         /// <summary>
-        /// The function remove a method with zero parameters to a specific event
+        /// The function remove a action (method that returns void) with zero parameters to a specific event
         /// </summary>
+        /// <param name = "eventAction">The dictionary key associated with the event</param>
+        /// <param name = "action">The action</param>
         public static void RemoveMethod(EventAction eventAction, genericDelegate action)
         {
             dictionaryEvent[eventAction] = (genericDelegate) dictionaryEvent[eventAction] - action;
         }
 
         /// <summary>
-        /// The function remove a method with one parameter to a specific event
+        /// The function remove a action (method that returns void) with one parameter to a specific event
         /// </summary>
+        /// <param name = "eventAction">The dictionary key associated with the event</param>
+        /// <param name = "action">The action</param>
         public static void RemoveMethod<T>(EventAction eventAction, genericDelegate<T> action)
         {
             dictionaryEvent[eventAction] = (genericDelegate<T>) dictionaryEvent[eventAction] - action;
         }
 
         /// <summary>
-        /// The function remove a method with two parameters to a specific event
+        /// The function remove a action (method that returns void) with two parameters to a specific event
         /// </summary>
+        /// <param name = "eventAction">The dictionary key associated with the event</param>
+        /// <param name = "action">The action</param>
         public static void RemoveMethod<T, F>(EventAction eventAction, genericDelegate<T, F> action)
         {
             dictionaryEvent[eventAction] = (genericDelegate<T, F>) dictionaryEvent[eventAction] - action;
@@ -103,6 +130,8 @@ namespace it.amalfi.Pearl.events
         #region Invoke event
         /// <summary>
         /// This function calls the specific event to activate all its subscribed methods
+        /// <param name = "eventAction">The dictionary key associated with the event</param>
+        /// /// <param name = "objects">The parameters for invoke</param>
         /// </summary>
         public static void CallEvent(EventAction action, params System.Object[] objects)
         {

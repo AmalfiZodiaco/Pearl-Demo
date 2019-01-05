@@ -4,13 +4,18 @@ using UnityEngine;
 namespace it.amalfi.Pearl.multitags
 {
     /// <summary>
-    /// Auxiliary methods that allow you to take advantage of the multitags
+    /// Static class that allow you to take advantage of the multitags
     /// </summary>
     public static class MultiTagsManager
     {
+        private static List<GameObject> auxListGameObject;
+        private static MultiTags[] auxArrayMultiTags;
+        private static MultiTags auxMultiTags;
+        private static GameObject[] auxArrayGameObject;
+
         #region Static Methods
         /// <summary>
-        /// Search gameobjects with tags.
+        /// Searches the gameobjects with tags.
         /// </summary>
         /// <param name = "only">This bool specifies whether the Gameobject should have only those tags</param>
         /// <param name = "tagsParameter">The tags that must have the object</param>
@@ -18,26 +23,26 @@ namespace it.amalfi.Pearl.multitags
         {
             Debug.Assert(tagsParameter != null && tagsParameter.Length != 0);
 
-            List<GameObject> listGameObjectsFound = new List<GameObject>();
-            MultiTags[] MultiTagsList = GameObject.FindObjectsOfType(typeof(MultiTags)) as MultiTags[];
+            auxListGameObject.Clear();
+            auxArrayMultiTags = GameObject.FindObjectsOfType(typeof(MultiTags)) as MultiTags[];
 
-            foreach (MultiTags multiTags in MultiTagsList)
+            for (int i = 0; i < auxArrayMultiTags.Length; i++)
             {
-                if ((!only && multiTags.ListTags.Count < tagsParameter.Length) || (only && multiTags.ListTags.Count != tagsParameter.Length))
+                if ((!only && auxArrayMultiTags[i].ListTags.Count < tagsParameter.Length) || (only && auxArrayMultiTags[i].ListTags.Count != tagsParameter.Length))
                     continue;
 
-                if (AreThereTagsInList(multiTags.ListTags, tagsParameter))
-                    listGameObjectsFound.Add(multiTags.gameObject);
+                if (AreThereTagsInList(auxArrayMultiTags[i].ListTags, tagsParameter))
+                    auxListGameObject.Add(auxArrayMultiTags[i].gameObject);
             }
 
-            if (listGameObjectsFound.Count > 0)
-                return listGameObjectsFound.ToArray();
+            if (auxListGameObject.Count > 0)
+                return auxListGameObject.ToArray();
             else
                 return null;
         }
 
         /// <summary>
-        /// Search gameobjects with these tags.
+        /// Searches a gameobject with these tags.
         /// </summary>
         /// <param name = "only">This bool specifies whether the Gameobject should have only those tags</param>
         /// <param name = "tagsParameter">The tags that must have the object</param>
@@ -45,9 +50,9 @@ namespace it.amalfi.Pearl.multitags
         {
             Debug.Assert(tagsParameter != null && tagsParameter.Length != 0);
 
-            GameObject[] objects = FindGameObjectsWithMultiTags(only, tagsParameter);
-            if (objects != null)
-                return objects[0];
+            auxArrayGameObject = FindGameObjectsWithMultiTags(only, tagsParameter);
+            if (auxArrayGameObject != null)
+                return auxArrayGameObject[0];
             else
                 return null;
         }
@@ -63,10 +68,10 @@ namespace it.amalfi.Pearl.multitags
         {
             Debug.Assert(value != null && tagsParameter != null);
 
-            MultiTags CurrentMultiTagsComponent = value.GetComponent<MultiTags>();
-            if (CurrentMultiTagsComponent == null)
+            auxMultiTags = value.GetComponent<MultiTags>();
+            if (auxMultiTags == null)
                 return !(tagsParameter.Length > 0);
-            return AreThereTagsInList(CurrentMultiTagsComponent.ListTags, tagsParameter);
+            return AreThereTagsInList(auxMultiTags.ListTags, tagsParameter);
         }
 
         /// <summary>
@@ -77,10 +82,10 @@ namespace it.amalfi.Pearl.multitags
         {
             Debug.Assert(value != null);
 
-            MultiTags CurrentMultiTagsComponent = value.GetComponent<MultiTags>();
-            if (CurrentMultiTagsComponent == null || CurrentMultiTagsComponent.ListTags.Count < 0)
+            auxMultiTags = value.GetComponent<MultiTags>();
+            if (auxMultiTags == null || auxMultiTags.ListTags.Count < 0)
                 return null;
-            return CurrentMultiTagsComponent.ListTags;
+            return auxMultiTags.ListTags;
         }
 
         /// <summary>
@@ -92,13 +97,15 @@ namespace it.amalfi.Pearl.multitags
         {
             Debug.Assert(value != null && tagsParameter != null);
 
-            MultiTags CurrentGameComponent = value.AddOnlyOneComponent<MultiTags>();
-            foreach (Tags tag in tagsParameter)
+            auxMultiTags = value.AddOnlyOneComponent<MultiTags>();
+
+            for (int i = 0; i < tagsParameter.Length; i++)
             {
-                if (CurrentGameComponent.ListTags.BinarySearch(tag) < 0)
-                    CurrentGameComponent.ListTags.Add(tag);
+                if (auxMultiTags.ListTags.BinarySearch(tagsParameter[i]) < 0)
+                    auxMultiTags.ListTags.Add(tagsParameter[i]);
             }
-            CurrentGameComponent.ListTags.Sort();
+
+            auxMultiTags.ListTags.Sort();
         }
 
         /// <summary>
@@ -110,23 +117,18 @@ namespace it.amalfi.Pearl.multitags
         {
             Debug.Assert(value != null && tagsParameter != null);
 
-            MultiTags CurrentGameComponent = value.GetComponent<MultiTags>();
-            if (CurrentGameComponent == null || tagsParameter.Length == 0)
+            auxMultiTags = value.GetComponent<MultiTags>();
+            if (auxMultiTags == null || tagsParameter.Length == 0)
                 return;
 
-            foreach (Tags tag in tagsParameter)
-                CurrentGameComponent.ListTags.Remove(tag);
+            for (int i = 0; i < tagsParameter.Length; i++)
+                auxMultiTags.ListTags.Remove(tagsParameter[i]);
 
-            CurrentGameComponent.ListTags.Sort();
+            auxMultiTags.ListTags.Sort();
         }
         #endregion
 
         #region Private Methods
-        /// <summary>
-        /// Is method checks if the tags in the parameters all exist in a list of strings
-        /// </summary>
-        /// <param name = "tags">The list of strings</param>
-        /// <param name = "tagsParameter">The tags that must be checked in the list</param>
         private static bool AreThereTagsInList(List<Tags> tags, params Tags[] tagsParameter)
         {
             Debug.Assert(tags != null && tagsParameter != null);
@@ -138,9 +140,9 @@ namespace it.amalfi.Pearl.multitags
                 return false;
             bool areThereTags = false;
 
-            foreach (Tags tagParameter in tagsParameter)
+            for (int i = 0; i < tagsParameter.Length; i++)
             {
-                if (tags.BinarySearch(tagParameter) >= 0)
+                if (tags.BinarySearch(tagsParameter[i]) >= 0)
                     areThereTags = true;
                 else
                 {

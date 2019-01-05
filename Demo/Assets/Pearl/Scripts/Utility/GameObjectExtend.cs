@@ -23,6 +23,11 @@ namespace it.amalfi.Pearl
             return PoolManager.Instantiate(prefab, position, rotation, parent);
         }
 
+        public static GameObject Instantiate(GameObject prefab, string name)
+        {
+            return GameObject.Instantiate(prefab, Vector2.zero, Quaternion.identity, null);
+        }
+
         /// <summary>
         /// Instantiate a gameobject with a name
         /// </summary>
@@ -33,9 +38,9 @@ namespace it.amalfi.Pearl
         /// <param name = "parent"> The parent of new object</param>
         public static GameObject Instantiate(GameObject prefab, string name, Vector3 position, Quaternion quat, Transform parent = null)
         {
-            GameObject aux = GameObject.Instantiate(prefab, position, quat, parent);
-            aux.name = name;
-            return aux;
+            GameObject auxGameObject = GameObject.Instantiate(prefab, position, quat, parent);
+            auxGameObject.name = name;
+            return auxGameObject;
         }
 
         /// <summary>
@@ -49,35 +54,6 @@ namespace it.amalfi.Pearl
             else
                 GameObject.Destroy(obj);
         }
-
-        /// <summary>
-        /// Returns a specific component found by a gameobject with the specific name
-        /// </summary>
-        /// <param name = "name">The name of the gameobject</param>
-        public static T FindComponentInGameObject<T>(string name) where T : Component
-        {
-            return GameObject.Find(name)?.GetComponent<T>();
-        }
-
-        /// <summary>
-        /// Returns a specific gameobject through multiple tags
-        /// </summary>
-        /// <param name = "only">This bool specifies whether the Gameobject should have only those tags</param>
-        /// <param name = "tags">The tags that must have the GameObject</param>
-        public static GameObject FindGameObjectWithTags(bool only, params Tags[] tags)
-        {
-            return MultiTagsManager.FindGameObjectWithMultiTags(only, tags);
-        }
-
-        /// <summary>
-        /// Returns a specific gameobjects through multiple tags
-        /// </summary>
-        /// <param name = "only">This bool specifies whether the Gameobject should have only those tags</param>
-        /// <param name = "tags">The tags that must have the object</param>
-        public static GameObject[] FindGameObjectsWithTags(bool only, params Tags[] tags)
-        {
-            return MultiTagsManager.FindGameObjectsWithMultiTags(only, tags);
-        }
         #endregion
 
         #region Extend Methods
@@ -87,8 +63,7 @@ namespace it.amalfi.Pearl
         /// <param name = "obj">The object that have the components</param>
         public static T[] FindOtherObjectsOfType<T>(this GameObject obj) where T : MonoBehaviour
         {
-            T[] names = GameObject.FindObjectsOfType<T>();
-            List<T> list = new List<T>(names);
+            List<T> list = new List<T>(GameObject.FindObjectsOfType<T>());
             list.Remove(list.Find(x => x.gameObject.GetInstanceID() == obj.GetInstanceID()));
             return list.ToArray();
         }
@@ -111,7 +86,7 @@ namespace it.amalfi.Pearl
         public static T AddOnlyOneComponent<T>(this GameObject obj) where T : Component
         {
             T aux = obj.GetComponent<T>();
-            if (!aux)
+            if (!obj.GetComponent<T>())
                 return obj.AddComponent<T>();
             return aux;
         }

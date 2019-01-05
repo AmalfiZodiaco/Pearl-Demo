@@ -28,18 +28,27 @@ namespace it.amalfi.Pearl.pools
         #region Private Methods
         private void CreatePool()
         {
-            foreach (ElementPool elementPool in prefabs)
+            for (int i = 0; i < prefabs.Length; i++)
             {
-                PoolManager.Create(elementPool.Obj, elementPool.NumberElementsInPool);
+                PoolManager.Create(prefabs[i].Obj, prefabs[i].NumberElementsInPool);
             }
         }
         #endregion
 
+        /// <summary>
+        /// Auxiliary class that associates a pooled prefab with the maximum number of instantiations
+        /// </summary>
         [Serializable]
         public struct ElementPool
         {
+            /// <summary>
+            /// The pooled preab
+            /// </summary>
             [SerializeField]
             private GameObject obj;
+            /// <summary>
+            /// The maximum number of instantiations
+            /// </summary>
             [SerializeField]
             private int numberElementsInPool;
 

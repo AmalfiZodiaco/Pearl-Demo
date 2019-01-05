@@ -11,6 +11,7 @@ namespace it.amalfi.Pearl.actionTrigger
     public class TriggerManager : LogicalSimpleManager
     {
         #region Inspector Fields
+        [Header("Trigger Manager")]
         /// <summary>
         /// The objects waiting for the events
         /// </summary>
@@ -29,6 +30,7 @@ namespace it.amalfi.Pearl.actionTrigger
         private TriggerManager triggerCollider;
         private DestructionElementManager destructionElement;
         private byte synchronized = 0;
+        private ITrigger[] auxTrigger;
         #endregion
 
         #region Unity CallBacks
@@ -97,11 +99,9 @@ namespace it.amalfi.Pearl.actionTrigger
             informations = new Informations(obj.GetComponent<ComplexAction>()?.Informations);
             foreach (GameObject element in listeners)
             {
-                ITrigger[] events = element.GetComponents<ITrigger>();
-                foreach (ITrigger e in events)
-                {
-                    e.Trigger(informations, obj.ReturnTags());
-                }
+                auxTrigger = element.GetComponents<ITrigger>();
+                for (int i = 0; i < auxTrigger.Length; i++)
+                    auxTrigger[i].Trigger(informations, obj.ReturnTags());
             }
         }
         #endregion

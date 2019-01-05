@@ -5,13 +5,20 @@ using UnityEngine.EventSystems;
 
 namespace it.amalfi.Pearl.UI
 {
+    /// <summary>
+    //  the class manages the active buttons by putting them in a stack so that 
+    //  if the user comes back he can activate his previous actions.
+    /// </summary>
     public class SelectionPanelComponent : LogicalComponent
     {
         #region Private Fields
         private Stack<GameObject> listSelectedButtons;
         #endregion
 
-        #region Property
+        #region Properties
+        /// <summary>
+        //  Returns the last gameobject selected
+        /// </summary>
         public GameObject LastSelectedButton
         {
             get
@@ -22,11 +29,13 @@ namespace it.amalfi.Pearl.UI
             }
         }
 
+        /// <summary>
+        ///  Returns if the user is on the homepage of the UI
+        /// </summary>
         public bool IsOpenPage { get { return LastSelectedButton == null; } }
         #endregion
 
         #region Constructors
-        // Use this for initialization
         public SelectionPanelComponent()
         {
             listSelectedButtons = new Stack<GameObject>();
@@ -34,6 +43,10 @@ namespace it.amalfi.Pearl.UI
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Puts in the list the new gameobject to activate and activate it
+        /// </summary>
+        /// <param name = "obj"> The new gameobject</param>
         public void ObeyChangeSelectNext(GameObject obj)
         {
             if (obj != EventSystem.current.currentSelectedGameObject)
@@ -43,12 +56,18 @@ namespace it.amalfi.Pearl.UI
             }
         }
 
+        /// <summary>
+        /// Resets the stack and any activated gameobject
+        /// </summary>
         public void ObeyReset()
         {
             EventSystem.current?.SetSelectedGameObject(null);
             listSelectedButtons.Clear();
         }
 
+        /// <summary>
+        /// Returns the previously active gameobject
+        /// </summary>
         public void ObeyChangeInPreSelect()
         {
             if (listSelectedButtons.Count != 0)

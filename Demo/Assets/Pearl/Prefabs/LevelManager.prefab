@@ -51,4 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 274c5b1e7606ec1419dcf031053742de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSingleton: 1
   poolPrefab: {fileID: 1742849764873152, guid: 432937a2054329043b4a41ea311e1576, type: 2}

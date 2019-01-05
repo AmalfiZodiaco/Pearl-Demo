@@ -30,7 +30,7 @@ namespace it.amalfi.Pearl.clock
         {
             this.preservedTime = preservedTime;
             this.on = true;
-            this.timestart = Time.time;
+            this.timestart = UnityEngine.Time.time;
         }
         #endregion
     }

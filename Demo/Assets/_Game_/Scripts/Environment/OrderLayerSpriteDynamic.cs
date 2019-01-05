@@ -9,7 +9,7 @@ namespace it.demo.graphic
         #endregion
 
         #region Unity CallBacks
-        private void Awake()
+        protected override void OnAwake()
         {
             spriteRender = GetComponent<SpriteRenderer>();
         }

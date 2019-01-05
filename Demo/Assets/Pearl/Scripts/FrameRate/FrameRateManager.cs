@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using it.amalfi.Pearl.events;
+using it.amalfi.Pearl.clock;
 
 namespace it.amalfi.Pearl.frameRate
 {
+    /// <summary>
+    /// This singleton class calculates the frameRate
+    /// </summary>
     public class FrameRateManager : LogicalSimpleManager
     {
         #region Inspector Fields
@@ -23,14 +23,22 @@ namespace it.amalfi.Pearl.frameRate
         #endregion
 
         #region Private Fields
+        private Timer timer;
         private int frameCounter = 0;
-        private float timeCounter = 0.0f;
         private int lastFramerate = 0;
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// This actual FrameRate
+        /// </summary>
+        public int FrameRate { get { return lastFramerate; } }
         #endregion
 
         #region Unity CallBacks
         protected override void OnAwake()
         {
+            timer = new Timer(this.refreshTime);
             SettingLimitFrameRate();
         }
 
@@ -55,18 +63,19 @@ namespace it.amalfi.Pearl.frameRate
         /// </summary>
         private void CalculateFrameRate()
         {
-            if (this.timeCounter < this.refreshTime)
+            if (timer.IsFinish())
             {
-                this.timeCounter += Time.deltaTime;
-                this.frameCounter++;
+                lastFramerate = Mathf.RoundToInt((float)frameCounter / timer.TimeWithoutLimit);
+                ResetCalculateFrame();
             }
             else
-            {
-                this.lastFramerate = Mathf.RoundToInt((float)frameCounter / timeCounter);
-                this.frameCounter = 0;
-                this.timeCounter = 0.0f;
-                EventsManager.CallEvent(EventAction.CallFrameRate, lastFramerate);
-            }
+                frameCounter++;
+        }
+
+        private void ResetCalculateFrame()
+        {
+            frameCounter = 0;
+            timer.ResetOn(this.refreshTime);
         }
         #endregion
     }

@@ -3,6 +3,9 @@ using System;
 
 namespace it.amalfi.Pearl.events
 {
+    /// <summary>
+    /// The abstract father of all the complex Manager (manager with components)
+    /// </summary>
     public abstract class LogicalManager : LogicalSimpleManager
     {
         #region Protected Fields
@@ -35,6 +38,9 @@ namespace it.amalfi.Pearl.events
         #endregion
 
         #region Abstract Methods
+        /// <summary>
+        /// Creation of the llstComponents dictionary elements
+        /// </summary>
         protected abstract void CreateComponents();
         #endregion
     }

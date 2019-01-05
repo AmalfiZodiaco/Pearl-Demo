@@ -3,6 +3,7 @@ using UnityEngine;
 using it.amalfi.Pearl.actionTrigger;
 using it.amalfi.Pearl.multitags;
 using it.amalfi.Pearl;
+using it.amalfi.Pearl.events;
 
 namespace it.demo.power
 {
@@ -14,14 +15,14 @@ namespace it.demo.power
 
         private void OnDisable()
         {
-            ForceManagerSystem forceManager = SingletonPool.Get<ForceManagerSystem>();
+            ForceManagerSystem forceManager = EventsManager.GetIstance<ForceManagerSystem>();
             if (forceManager)
                 forceManager.DisableForce(gameObject.GetInstanceID());
         }
 
         public override void SetAction()
         {
-            ForceManagerSystem forceManager = SingletonPool.Get<ForceManagerSystem>();
+            ForceManagerSystem forceManager = EventsManager.GetIstance<ForceManagerSystem>();
             transform.rotation = QuaternionExtend.CalculateRotation2D(Take<Vector2>("direction"));
             forceManager.EnableForce(gameObject.GetInstanceID());
             forceManager.AddForce(gameObject.GetInstanceID(), "movement", Take<Vector2>("direction") * speed);
@@ -32,10 +33,10 @@ namespace it.demo.power
             GameObjectExtend.Destroy(gameObject);
         }
 
-        public override void SetAwake()
+        protected override void OnAwake()
         {
-            ForceManagerSystem forceManager = SingletonPool.Get<ForceManagerSystem>();
-            forceManager.AddManagerForce(gameObject.GetInstanceID(), GetComponent<Rigidbody2D>());
+            base.OnAwake();
+            EventsManager.GetIstance<ForceManagerSystem>().AddManagerForce(gameObject.GetInstanceID(), GetComponent<Rigidbody2D>());
         }
     }
 }

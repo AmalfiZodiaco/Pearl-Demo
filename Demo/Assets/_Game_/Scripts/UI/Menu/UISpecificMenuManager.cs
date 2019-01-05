@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using it.amalfi.Pearl;
+using it.amalfi.Pearl.events;
 
 namespace it.demo.UI
 {
@@ -23,16 +24,15 @@ namespace it.demo.UI
         #region Public Methods
         public void ChangeSlide(string nameSlider)
         {
-            AudioManager audioManager = SingletonPool.Get<AudioManager>();
             AudioEnum audioEnum = EnumExtend.ParseEnum<AudioEnum>(nameSlider);
-            audioManager.SetVolume(audioEnum, sliders[audioEnum].value, true);
+            EventsManager.GetIstance<AudioManager>().SetVolume(audioEnum, sliders[audioEnum].value, true);
         }
         #endregion
 
         #region Private Methods
         private void SetMusicSlider()
         {
-            AudioManager audioManager = SingletonPool.Get<AudioManager>();
+            AudioManager audioManager = EventsManager.GetIstance<AudioManager>();
             Transform parent = transform.Find("OptionsPanel/");
             sliders = new Dictionary<AudioEnum, Slider>
             {
@@ -40,8 +40,8 @@ namespace it.demo.UI
                 { AudioEnum.SoundEffects, parent.Find("SliderEffects").GetComponent<Slider>() }
             };
 
-            sliders[AudioEnum.Music].value = audioManager.GetVolume(AudioEnum.Music);
-            sliders[AudioEnum.SoundEffects].value = audioManager.GetVolume(AudioEnum.SoundEffects);
+            sliders[AudioEnum.Music].value = audioManager.GetVolume(AudioEnum.Music, true);
+            sliders[AudioEnum.SoundEffects].value = audioManager.GetVolume(AudioEnum.SoundEffects, true);
         }
         #endregion
     }

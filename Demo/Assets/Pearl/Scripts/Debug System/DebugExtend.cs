@@ -1,10 +1,18 @@
-﻿using UnityEngine;
+﻿using it.amalfi.Pearl.events;
+using UnityEngine;
 
 namespace it.amalfi.Pearl.debug
 {
+    /// <summary>
+    /// The static class that is able to debug even in Build version.
+    /// </summary>
     public static class DebugExtend
     {
-        #region Public Methods
+        #region Public Static Methods
+        /// <summary>
+        /// Writes Log in the console or build UI
+        /// </summary>
+        /// <param name = "obj">The object that will be written</param>
         public static void Log(object obj)
         {
             #if UNITY_EDITOR
@@ -25,14 +33,12 @@ namespace it.amalfi.Pearl.debug
         {
             if (GameObject.FindObjectOfType<DebugBuildManager>() == null)
                 CreateDebugBuild();
-            SingletonPool.Get<DebugBuildManager>().Log(obj);
+            EventsManager.GetIstance<DebugBuildManager>().Log(obj);
         }
 
         private static void CreateDebugBuild()
         {
-            GameObject aux = Resources.Load<GameObject>("DebugBuild");
-            aux = GameObject.Instantiate<GameObject>(aux);
-            aux.name = "DebugUI";
+            GameObjectExtend.Instantiate(Resources.Load<GameObject>("DebugBuild"), "DebugUI");
         }
         #endregion
     }

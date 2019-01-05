@@ -11,7 +11,7 @@ namespace it.amalfi.Pearl.clock
         /// <summary>
         /// How much time has passed in percentage[0 - 1]
         /// </summary>
-        public float ActualTimeInPercent
+        public float TimeInPercent
         {
             get
             {
@@ -19,14 +19,29 @@ namespace it.amalfi.Pearl.clock
                 if (this.pause)
                     return Mathf.Clamp01(preservedTime / this.limit);
                 else
-                    return Mathf.Clamp01(ActualTimeWithoutLimit / this.limit);
+                    return Mathf.Clamp01(AuxTime / this.limit);
+            }
+        }
+
+        /// <summary>
+        /// How much time has passed without limits
+        /// </summary>
+        public float TimeWithoutLimit
+        {
+            get
+            {
+                Debug.Assert(this.on);
+                if (this.pause)
+                    return preservedTime;
+                else
+                    return AuxTime;
             }
         }
 
         /// <summary>
         /// How much time has passed in percentage[0 - 1] in countdown
         /// </summary>
-        public float ActualTimeInPercentReversed
+        public float TimeInPercentReversed
         {
             get
             {
@@ -34,14 +49,14 @@ namespace it.amalfi.Pearl.clock
                 if (this.pause)
                     return 1 - Mathf.Clamp01(preservedTime / this.limit);
                 else
-                    return 1 - Mathf.Clamp01(ActualTimeWithoutLimit / this.limit);
+                    return 1 - Mathf.Clamp01(AuxTime / this.limit);
             }
         }
 
         /// <summary>
-        /// How much time has passed in countDown
+        /// How much time has passed in countDown [limit-0]
         /// </summary>
-        public float ActualTimeReversed
+        public float TimeReversed
         {
             get
             {
@@ -49,7 +64,7 @@ namespace it.amalfi.Pearl.clock
                 if (this.pause)
                     return limit - preservedTime;
                 else
-                    return limit - Mathf.Min(preservedTime + Time.time - this.timestart, limit);
+                    return limit - Mathf.Min(preservedTime + UnityEngine.Time.time - this.timestart, limit);
             }
         }
         #endregion
@@ -82,7 +97,7 @@ namespace it.amalfi.Pearl.clock
         {
             Debug.Assert(this.on);
 
-            return this.ActualTime >= this.limit;
+            return this.Time >= this.limit;
         }
 
         /// <summary>
@@ -94,7 +109,7 @@ namespace it.amalfi.Pearl.clock
             Debug.Assert(duration > 0 && duration != Mathf.Infinity);
             this.preservedTime = preservedTime;
             this.on = true;
-            this.timestart = Time.time;
+            this.timestart = UnityEngine.Time.time;
             this.limit = duration;
         }
         #endregion

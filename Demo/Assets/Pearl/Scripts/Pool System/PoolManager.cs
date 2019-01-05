@@ -28,17 +28,18 @@ namespace it.amalfi.Pearl.pools
         }
 
         /// <summary>
-        /// Recycle element for specific Pool
+        /// Recycles a element for specific Pool
         /// </summary>
         /// <param name = "prefab"> The prefab for pool</param>
         public static GameObject Instantiate(GameObject prefab)
         {
             Debug.Assert(prefab != null);
+
             return listPool[prefab.name].InstantiateObject(Vector3.zero, Quaternion.identity, null);
         }
 
         /// <summary>
-        /// Recycle element for specific Pool
+        /// Recycles a element for specific Pool
         /// </summary>
         /// <param name = "prefab"> The prefab for pool</param>
         /// <param name = "position"> The position where the prefab will spawn</param>
@@ -68,6 +69,7 @@ namespace it.amalfi.Pearl.pools
         public static void RemovePool(GameObject prefab)
         {
             Debug.Assert(prefab != null);
+
             if (listPool.ContainsKey(prefab.name))
             {
                 GameObject.Destroy(listPool[prefab.name].Pool);
@@ -96,10 +98,9 @@ namespace it.amalfi.Pearl.pools
 
             if (listPool.ContainsKey(obj.name))
                 return listPool[obj.name];
-            GameObject poolsContainer = GameObject.FindObjectOfType<PoolsCreatorManager>().gameObject;
-            GameObject poolContainer = new GameObject(obj.name + "Pool");
-            poolContainer.transform.parent = poolsContainer.transform;
-            listPool[obj.name] = new SpecificPoolManager(poolContainer, obj, max);
+            GameObject auxGameObject = new GameObject(obj.name + "Pool");
+            auxGameObject.transform.parent = GameObject.FindObjectOfType<PoolsCreatorManager>().gameObject.transform;
+            listPool[obj.name] = new SpecificPoolManager(auxGameObject, obj, max);
             return listPool[obj.name];
         }
         #endregion

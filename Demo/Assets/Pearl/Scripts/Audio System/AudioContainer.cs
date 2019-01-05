@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 using it.amalfi.Pearl.clock;
+using UnityEngine.Audio;
 
 namespace it.amalfi.Pearl.audio
 {
+    /// <summary>
+    /// A class that represents a mixer channel. In this class the volume of the 
+    /// channel can be increased or decreased.
+    /// </summary>
     public class AudioContainer
     {
         #region Private Fields
@@ -15,6 +20,9 @@ namespace it.amalfi.Pearl.audio
         #endregion
 
         #region Properties
+        /// <summary>
+        /// The name of channel of mixer
+        /// </summary>
         public string Name { get; private set; }
         #endregion
 
@@ -26,7 +34,14 @@ namespace it.amalfi.Pearl.audio
         }
         #endregion
 
-        #region Public Methods
+        #region Obey Methods
+        /// <summary>
+        /// Creates new volume transition
+        /// </summary>
+        /// <param name = "volumeActualValue">The actual volume of the channel mixer</param>
+        /// <param name = "volumeNewValue">The voluem to be reached</param>
+        /// <param name = "time"> Time for volume transition</param>
+        /// <param name = "curve">The transition curve.If the curve does not exist, the volume change is linear, if it exists, the change follows the curve.</param>
         public float ObeyReset(float volumeActualValue, float volumeNewValue, float time, AnimationCurve curve = null)
         {
             Debug.Assert(time >= 0);
@@ -46,6 +61,9 @@ namespace it.amalfi.Pearl.audio
             return ObeyReturnVolume();
         }
 
+        /// <summary>
+        /// Returns the volume during the transition
+        /// </summary>
         public float ObeyReturnVolume()
         {
             auxVolume = Evalutate();
@@ -54,6 +72,9 @@ namespace it.amalfi.Pearl.audio
             return MathfExtend.ChangeRange(auxVolume, lerpRange, volumeRange);
         }
 
+        /// <summary>
+        /// Returns if the volume transition is over
+        /// </summary>
         public bool ObeyIsFinish()
         {
             Debug.Assert(timer != null);
@@ -66,9 +87,9 @@ namespace it.amalfi.Pearl.audio
         private float Evalutate()
         {
             if (curve != null)
-                return curve.Evaluate(timer.ActualTimeInPercent);
+                return curve.Evaluate(timer.TimeInPercent);
             else
-                return timer.ActualTimeInPercent;
+                return timer.TimeInPercent;
         }
         #endregion
     }

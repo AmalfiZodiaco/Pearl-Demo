@@ -5,23 +5,33 @@ using System;
 
 namespace it.amalfi.Pearl.input
 {
+    /// <summary>
+    /// The class that manages the input. In the update, it calls the 
+    /// component that actually reads the input based on the type of controller
+    /// </summary>
     public class InputReaderManager : LogicalManager
     {
         #region private fields
         private ControllerEnum controller = ControllerEnum.PC;
         private const string nullable = "null";
+        private InputReaderComponent inputComponent;
         #endregion
 
         #region Unity Callbacks
+        protected override void OnAwake()
+        {
+            inputComponent = GetLogicalComponent<InputReaderComponent>();
+        }
+
         private void Update()
         {
             switch (controller)
             {
                 case ControllerEnum.PC:
-                    GetLogicalComponent<InputReaderComponent>().UpdateKeyboard();
+                    inputComponent.UpdateKeyboard();
                     break;
                 case ControllerEnum.JOYSTICK:
-                    GetLogicalComponent<InputReaderComponent>().UpdateJoystick();
+                    inputComponent.UpdateJoystick();
                     break;
             }
         }
@@ -40,7 +50,7 @@ namespace it.amalfi.Pearl.input
         #region Interface Methods
 
         #region Add/Remove method in events
-        protected override void SubscribEvents()
+        protected override void SubscribeEvents()
         {
             EventsManager.AddMethod<bool>(EventAction.CallPause, ReceivePause);
         }
@@ -59,13 +69,6 @@ namespace it.amalfi.Pearl.input
         }
         #endregion
 
-        #endregion
-
-        #region Private Methods
-        private static InputReaderManager GetIstance()
-        {
-            return SingletonPool.Get<InputReaderManager>();
-        }
         #endregion
     }
 }
