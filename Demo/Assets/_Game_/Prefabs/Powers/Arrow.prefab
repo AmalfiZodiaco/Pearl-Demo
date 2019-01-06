@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listeners:
   - {fileID: 1215201833114664}
-  tagForTriggered: 08000000
+  tagForTriggered: 07000000
 --- !u!114 &114258916790103096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59fc68b591829324f9b87b176f2d98bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags: 040000000600000007000000
+  tags: 05000000060000000700000003000000
 --- !u!114 &114957786751939242
 MonoBehaviour:
   m_ObjectHideFlags: 1
