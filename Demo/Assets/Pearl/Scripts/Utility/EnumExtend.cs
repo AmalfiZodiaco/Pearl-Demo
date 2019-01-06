@@ -15,11 +15,18 @@ namespace Pearl
             return (T)Enum.ToObject(typeof(T), auxInteger);
         }
 
-        public static T ParseEnum<T>(string value)
+        public static T ParseEnum<T>(string value) where T : struct, IConvertible
         {
             Debug.Assert(typeof(T).IsEnum);
 
-            return (T)Enum.Parse(typeof(T), value, true);
+            try
+            {
+                return (T)Enum.Parse(typeof(T), value, true);
+            }
+            catch (ArgumentException)
+            {
+                return default(T);
+            }
         }
 
         public static int Length<T>() where T : struct, IConvertible
