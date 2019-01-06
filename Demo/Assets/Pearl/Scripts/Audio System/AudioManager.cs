@@ -40,7 +40,7 @@ namespace Pearl.audio
         private void Update()
         {
             if (isActivedContainer)
-                ExecuteChangeVolume();
+                DoExecuteChangeVolume();
         }
         #endregion
 
@@ -56,7 +56,7 @@ namespace Pearl.audio
 
         #region Interface Methods
 
-        #region Public Singleton Methods
+        #region Singleton Methods
         /// <summary>
         /// Sets Volume of specific channel of mixer
         /// </summary>
@@ -65,10 +65,7 @@ namespace Pearl.audio
         /// <param name = "isPercent">If it is false, the volume is expressed in decibels, it is true in a number in the interval [0, 1]</param>
         public void SetVolume(AudioEnum audioEnum, float newVolume, bool isPercent)
         {
-            if (isPercent)
-                newVolume = MathfExtend.ChangeRange(newVolume, rangeAudioDb);
-            auxContainer = GetLogicalComponent<ListAudioContainer>().ObeyGetContainer(audioEnum);
-            audioMixer.SetFloat(auxContainer.Name, newVolume);
+            DoSetVolume(audioEnum, newVolume, isPercent);
         }
 
         /// <summary>
@@ -80,6 +77,31 @@ namespace Pearl.audio
         /// <param name = "time"> Time for volume transition</param>
         /// <param name = "curve">The transition curve.If the curve does not exist, the volume change is linear, if it exists, the change follows the curve.</param>
         public void SetVolume(AudioEnum audioEnum, float value, bool isPercent, float time, AnimationCurve curve = null)
+        {
+            DoSetVolume(audioEnum, value, isPercent, time, curve);
+        }
+
+        /// <summary>
+        /// Returns the volume of specific channel of mixer
+        /// </summary>
+        public float GetVolume(AudioEnum audioEnum, bool isPercent)
+        {
+            return DoGetVolume(audioEnum, isPercent);
+        }
+        #endregion
+
+        #endregion
+
+        #region Logical Methods
+        public void DoSetVolume(AudioEnum audioEnum, float newVolume, bool isPercent)
+        {
+            if (isPercent)
+                newVolume = MathfExtend.ChangeRange(newVolume, rangeAudioDb);
+            auxContainer = GetLogicalComponent<ListAudioContainer>().ObeyGetContainer(audioEnum);
+            audioMixer.SetFloat(auxContainer.Name, newVolume);
+        }
+
+        public void DoSetVolume(AudioEnum audioEnum, float value, bool isPercent, float time, AnimationCurve curve = null)
         {
             if (isPercent)
                 value = MathfExtend.ChangeRange(value, rangeAudioDb);
@@ -94,10 +116,7 @@ namespace Pearl.audio
             }
         }
 
-        /// <summary>
-        /// Returns the volume of specific channel of mixer
-        /// </summary>
-        public float GetVolume(AudioEnum audioEnum, bool isPercent)
+        public float DoGetVolume(AudioEnum audioEnum, bool isPercent)
         {
             auxContainer = GetLogicalComponent<ListAudioContainer>().ObeyGetContainer(audioEnum);
             audioMixer.GetFloat(auxContainer.Name, out volumeMixer);
@@ -105,14 +124,8 @@ namespace Pearl.audio
                 volumeMixer = MathfExtend.Percent(volumeMixer, rangeAudioDb);
             return volumeMixer;
         }
-        #endregion
 
-        #endregion
-
-        #region Logical Methods
-
-        #region Private Methods
-        private void ExecuteChangeVolume()
+        private void DoExecuteChangeVolume()
         {
             auxList = new List<AudioContainer>(activeContainers);
             for (int i = 0; i < activeContainers.Count; i++)
@@ -127,7 +140,6 @@ namespace Pearl.audio
                 }
             }
         }
-        #endregion
 
         #endregion
     }

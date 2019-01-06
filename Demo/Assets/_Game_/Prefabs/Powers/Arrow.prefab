@@ -19,14 +19,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4641521337322830}
-  - component: {fileID: 114957786751939242}
+  - component: {fileID: 114632479662117932}
   - component: {fileID: 212457566374623304}
   - component: {fileID: 61974855665279272}
   - component: {fileID: 50820370099482372}
   - component: {fileID: 114046314778028708}
-  - component: {fileID: 114139649112842418}
-  - component: {fileID: 114384518560302848}
+  - component: {fileID: 114957786751939242}
   - component: {fileID: 114258916790103096}
+  - component: {fileID: 114255636300252456}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
---- !u!114 &114139649112842418
+--- !u!114 &114255636300252456
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -112,10 +112,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1215201833114664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c806a02bff7d4494e9e6ee7dd3347671, type: 3}
+  m_Script: {fileID: 11500000, guid: 9063b48604981114593f05cf661af892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
+  listeners:
+  - {fileID: 1215201833114664}
+  tagForTriggered: 08000000
 --- !u!114 &114258916790103096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4f21ebbe77c554b9b89c30e5d6d441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114384518560302848
+--- !u!114 &114632479662117932
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -135,12 +137,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1215201833114664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2b8643987de6bd4a96efed7ab481766, type: 3}
+  m_Script: {fileID: 11500000, guid: 59fc68b591829324f9b87b176f2d98bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listeners:
-  - {fileID: 1215201833114664}
-  tagForTriggered: 08000000
+  tags: 040000000600000007000000
 --- !u!114 &114957786751939242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,10 +149,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1215201833114664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 769881ac22d807e458b5a3dc0b6ba2d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 99c153023d81c8545bcd06f143999390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags: 07000000060000000800000004000000
+  timeForDestroy: 5
 --- !u!212 &212457566374623304
 SpriteRenderer:
   m_ObjectHideFlags: 1

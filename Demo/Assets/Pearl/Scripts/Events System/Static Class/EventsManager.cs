@@ -44,6 +44,7 @@ namespace Pearl.events
         private static void AddSingleton(LogicalSimpleManager[] istance)
         {
             Debug.Assert(istance.Length == 1, "There isn't Singleton or there too istances of singleton");
+
             dictionarySingleton.Update(istance[0].GetType(), istance[0]);
         }
 

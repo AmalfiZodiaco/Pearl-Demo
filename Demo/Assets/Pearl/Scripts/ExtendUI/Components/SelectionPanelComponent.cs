@@ -42,7 +42,7 @@ namespace Pearl.UI
         }
         #endregion
 
-        #region Public Methods
+        #region Obey Methods
         /// <summary>
         /// Puts in the list the new gameobject to activate and activate it
         /// </summary>

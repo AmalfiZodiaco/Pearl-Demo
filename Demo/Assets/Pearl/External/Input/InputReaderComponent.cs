@@ -7,7 +7,7 @@ namespace Pearl.input
     public class InputReaderComponent : InputReaderAbstractComponent
     {
         #region Public Methods
-        public override void UpdateKeyboard()
+        public override void DoUpdateKeyboard()
         {
             if (Input.GetButtonDown("Submit"))
                 EventsManager.CallEvent(EventAction.GetInputEntryMenu);
@@ -26,7 +26,7 @@ namespace Pearl.input
         }
 
 
-        public override void UpdateJoystick()
+        public override void DoUpdateJoystick()
         {
         }
         #endregion

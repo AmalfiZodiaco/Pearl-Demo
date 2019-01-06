@@ -25,16 +25,16 @@ namespace Pearl.frameRate
 
         private void Update()
         {
-            SeeFPS(frameRateManager.FrameRate);
+            DoSeeFPS(frameRateManager.FrameRate);
         }
         #endregion
 
-        #region Public Methods
+        #region Logical Methods
         /// <summary>
         /// Writes the framRate in the component text
         /// </summary>
         /// <param name = "FPS"> The current FrameRate</param>
-        public void SeeFPS(int FPS)
+        private void DoSeeFPS(int FPS)
         {
             frameRateText.text = FPS.ToString() + " " + "FPS";
         }

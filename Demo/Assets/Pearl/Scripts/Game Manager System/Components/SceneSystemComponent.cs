@@ -11,58 +11,61 @@ namespace Pearl.game
         #region Constructors
         public SceneSystemComponent()
         {
-            ActiveLevelSystem();
+            SceneManager.sceneLoaded += ReceiveNewScene;
         }
         #endregion
 
-        #region Public Methods
+        #region Override Methods
         /// <summary>
         /// A method called when the manager is destroyed
         /// </summary>
         public override void OnDestroy()
         {
-            SceneManager.sceneLoaded -= ManageNewScene;
+            SceneManager.sceneLoaded -= ReceiveNewScene;
         }
+        #endregion
 
+        #region Obey Methods
         /// <summary>
-        /// The method atcive the level system
+        /// The method accesses a new scene through the name of scene
         /// </summary>
-        public void ActiveLevelSystem()
+        /// <param name = "newLevel">The new scene in string</param>
+        public void ObeyEnterNewLevel(string newLevel)
         {
-            SceneManager.sceneLoaded += ManageNewScene;
+            SceneManager.LoadScene(newLevel);
         }
 
         /// <summary>
         /// The method accesses a new scene through the SceneEnum enumerator
         /// </summary>
         /// <param name = "newLevel">The new scene in enumerator</param>
-        public void NewScene(SceneEnum newLevel)
+        public void ObeyEnterNewLevel(SceneEnum newLevel)
         {
             SceneManager.LoadScene(newLevel.ToString());
         }
 
         /// <summary>
-        /// The method returns enumerator of actual scene
+        /// The method returns enumerator of current scene
         /// </summary>
-        public SceneEnum ReturnLevel()
+        public SceneEnum ObeyReturnCurrentLevel()
         {
-            return GetActualLevel(SceneManager.GetActiveScene());
+            return GetActualLevel(SceneManager.GetActiveScene().name);
         }
         #endregion
 
         #region Private Methods
-        private SceneEnum GetActualLevel(Scene scene)
+        private SceneEnum GetActualLevel(string scene)
         {
-            return EnumExtend.ParseEnum<SceneEnum>(scene.name);
+            return EnumExtend.ParseEnum<SceneEnum>(scene);
         }
 
         /// <summary>
         /// the method is activated at the event "SceneManager.sceneLoaded": 
         /// the method starts to the event that activates when there is a new scene.
         /// </summary>
-        private void ManageNewScene(Scene scene, LoadSceneMode load)
+        private void ReceiveNewScene(Scene scene, LoadSceneMode load)
         {
-            EventsManager.CallEvent(EventAction.NewScene, GetActualLevel(scene));
+            EventsManager.CallEvent(EventAction.NewScene, GetActualLevel(scene.name));
         }
         #endregion
     }

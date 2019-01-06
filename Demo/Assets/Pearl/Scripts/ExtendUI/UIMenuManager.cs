@@ -9,7 +9,7 @@ namespace Pearl.UI
     /// <summary>
     /// The abstract class of the UI.This class must be the parent of every UI of the menu or pause.
     /// </summary>
-    public abstract class UIMenuManager : LogicalManager
+    public class UIMenuManager : LogicalManager
     {
         #region Inspector Fields
         /// <summary>
@@ -70,21 +70,17 @@ namespace Pearl.UI
         /// <summary>
         /// Calls The new Game
         /// </summary>
-        public void NewGame()
+        public void StartNewGame(string scene)
         {
-            gameObject.SetActive(false);
-            EventsManager.GetIstance<GameManager>().NewLevel(SceneEnum.Level);
+            DoStartNewGame(scene);
         }
 
         /// <summary>
         ///  This method must be called whenever you want to change the active button(and therefore often also panel)
         /// </summary>
-        public void ChangeButton(GameObject obj)
+        public void ChangeActiveGameObject(GameObject obj)
         {
-            if (visibilityComponent.ObeyIsSamePanel(obj))
-                DoChangeButton(obj);
-            else
-                DoChangePanel(obj);
+            DoChangeActiveGameObject(obj);
         }
 
         /// <summary>
@@ -92,13 +88,7 @@ namespace Pearl.UI
         /// </summary>
         public void Quit()
         {
-            #if UNITY_STANDALONE
-                Application.Quit();
-            #endif
-
-            #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-            #endif
+            DoQuit();
         }
         #endregion
 
@@ -121,11 +111,7 @@ namespace Pearl.UI
         #region Receive Methods
         private void ReceivePause(bool pause)
         {
-            this.isOpenUI = pause;
-            if (!pause)
-                DoCloseMenu();
-            else
-                DoChangePanel(firstUIObjectEnable);
+            DoReceivePause(pause);
         }
 
         private void ReceiveInputOpenCloseMenu()
@@ -149,30 +135,64 @@ namespace Pearl.UI
         #endregion
 
         #region Logical Methods
-        protected void DoChangePanel(GameObject obj)
+        private void DoStartNewGame(string scene)
+        {
+            gameObject.SetActive(false);
+            EventsManager.GetIstance<GameManager>().EnterNewLevel(scene);
+        }
+
+        private void DoChangeActiveGameObject(GameObject obj)
+        {
+            if (visibilityComponent.ObeyIsSamePanel(obj))
+                DoChangeButton(obj);
+            else
+                DoChangePanel(obj);
+        }
+
+        private void DoQuit()
+        {
+            #if UNITY_STANDALONE
+                Application.Quit();
+            #endif
+
+            #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+            #endif
+        }
+
+        private void DoReceivePause(bool pause)
+        {
+            this.isOpenUI = pause;
+            if (!pause)
+                DoCloseMenu();
+            else
+                DoChangePanel(firstUIObjectEnable);
+        }
+
+        private void DoChangePanel(GameObject obj)
         {
             visibilityComponent.ObeyShow(obj);
             selectionComponent.ObeyChangeSelectNext(obj);
         }
 
-        protected void DoCloseMenu()
+        private void DoCloseMenu()
         {
             visibilityComponent.ObeyOpenOrCloseAllPanels(false, transform);
             selectionComponent.ObeyReset();
         }
 
-        protected void DoChangeButton(GameObject obj)
+        private void DoChangeButton(GameObject obj)
         {
             selectionComponent.ObeyChangeSelectNext(obj);
         }
 
-        protected void DoOpenCloseMenu()
+        private void DoOpenCloseMenu()
         {
             if (stateUI == StateUI.Pause)
                 SendCallPause();
         }
 
-        protected void DoReturn()
+        private void DoReturn()
         {
             if (isOpenUI)
             {

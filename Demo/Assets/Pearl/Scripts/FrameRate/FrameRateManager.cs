@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using Pearl.clock;
 using Pearl.events;
-using Pearl.clock;
+using UnityEngine;
 
 namespace Pearl.frameRate
 {
@@ -39,40 +39,40 @@ namespace Pearl.frameRate
         protected override void OnAwake()
         {
             timer = new Timer(this.refreshTime);
-            SettingLimitFrameRate();
+            DoSettingLimitFrameRate();
         }
 
         private void Update()
         {
-            CalculateFrameRate();
+            DoCalculateFrameRate();
         }
         #endregion
 
-        #region Private Methods
-        /// <summary>
-        /// This method set the limit of the desidered frame rate
-        /// </summary>
-        private void SettingLimitFrameRate()
-        {
-            QualitySettings.vSyncCount = 0;
-            Application.targetFrameRate = limitFrameRate;
-        }
-
+        #region Logical Methods
         /// <summary>
         /// This method calculate the actual frame rate 
         /// </summary>
-        private void CalculateFrameRate()
+        private void DoCalculateFrameRate()
         {
             if (timer.IsFinish())
             {
                 lastFramerate = Mathf.RoundToInt((float)frameCounter / timer.TimeWithoutLimit);
-                ResetCalculateFrame();
+                DoResetCalculateFrame();
             }
             else
                 frameCounter++;
         }
 
-        private void ResetCalculateFrame()
+        /// <summary>
+        /// This method set the limit of the desidered frame rate
+        /// </summary>
+        private void DoSettingLimitFrameRate()
+        {
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = limitFrameRate;
+        }
+
+        private void DoResetCalculateFrame()
         {
             frameCounter = 0;
             timer.ResetOn(this.refreshTime);

@@ -42,11 +42,12 @@ namespace Pearl
 
         protected override void OnDestroy()
         {
+            base.OnDestroy();
             WarnsAdvice();
         }
         #endregion
 
-        #region Private Methods
+        #region Logical Methods
         private IEnumerator DetroyGameObject(float time)
         {
             yield return new WaitForSeconds(time);

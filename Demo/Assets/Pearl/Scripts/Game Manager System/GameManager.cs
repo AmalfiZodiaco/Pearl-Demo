@@ -30,6 +30,12 @@ namespace Pearl.game
         [SerializeField]
         [Tooltip("Enable or disable mouse")]
         private bool enableMouse;
+        /// <summary>
+        ///if the Boolean is true, the game is tested in debug mode
+        /// </summary>
+        [SerializeField]
+        [Tooltip("Is the debug mode?")]
+        private bool debugMode;
         #endregion
 
         #region Propieties
@@ -46,7 +52,6 @@ namespace Pearl.game
         #region Protected Fields
         protected SceneSystemComponent sceneSystem;
         protected CursorEnableComponent cursorSystem;
-
         #endregion
 
         #region Unity CallBacks
@@ -54,7 +59,8 @@ namespace Pearl.game
         {
             sceneSystem = GetLogicalComponent<SceneSystemComponent>();
             cursorSystem = GetLogicalComponent<CursorEnableComponent>();
-            currentLevel = sceneSystem.ReturnLevel();
+            currentLevel = sceneSystem.ObeyReturnCurrentLevel();
+            transform.Find("FrameRateUI").gameObject.SetActive(debugMode);
         }
         #endregion
 
@@ -69,21 +75,74 @@ namespace Pearl.game
         }
         #endregion
 
-        #region Public Singleton Methods
+        #region Interface Methods
+
+        #region Singleton Methods
         /// <summary>
         /// Starts a new scene
         /// </summary>
         /// <param name = "newLevel"> The new scene to be enabled</param>
-        public void NewLevel(SceneEnum newLevel)
+        public void EnterNewLevel(SceneEnum newLevel)
         {
-            currentLevel = newLevel;
-            sceneSystem.NewScene(newLevel);
+            DoEnterNewLevel(newLevel);
+        }
+
+        /// <summary>
+        /// Starts a new scene
+        /// </summary>
+        /// <param name = "newLevel"> The new scene to be enabled</param>
+        public void EnterNewLevel(string newLevel)
+        {
+            DoEnterNewLevel(newLevel);
         }
 
         /// <summary>
         /// Enables or disables the mouse
         /// </summary>
         public void EnableMouse(bool enable)
+        {
+            DoEnableMouse(enable);
+        }
+        #endregion
+
+        #region Add/Remove Methods
+        protected override void SubscribeEvents()
+        {
+            EventsManager.AddMethod<SceneEnum>(EventAction.NewScene, ReceiveCurrentLevel);
+        }
+
+        protected override void RemoveEvents()
+        {
+            EventsManager.RemoveMethod<SceneEnum>(EventAction.NewScene, ReceiveCurrentLevel);
+        }
+        #endregion
+
+        #region Receive Methods
+        private void ReceiveCurrentLevel(SceneEnum newScene)
+        {
+            DoCurrentLevel(newScene);
+        }
+        #endregion
+
+        #endregion
+
+        #region Logical Methods
+        private void DoCurrentLevel(SceneEnum newScene)
+        {
+            currentLevel = newScene;
+        }
+
+        private void DoEnterNewLevel(SceneEnum newLevel)
+        {
+            sceneSystem.ObeyEnterNewLevel(newLevel);
+        }
+
+        private void DoEnterNewLevel(string newLevel)
+        {
+            sceneSystem.ObeyEnterNewLevel(newLevel);
+        }
+
+        private void DoEnableMouse(bool enable)
         {
             cursorSystem.Enable = enable;
         }

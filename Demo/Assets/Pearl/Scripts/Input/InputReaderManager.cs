@@ -28,10 +28,10 @@ namespace Pearl.input
             switch (controller)
             {
                 case ControllerEnum.PC:
-                    inputComponent.UpdateKeyboard();
+                    inputComponent.DoUpdateKeyboard();
                     break;
                 case ControllerEnum.JOYSTICK:
-                    inputComponent.UpdateJoystick();
+                    inputComponent.DoUpdateJoystick();
                     break;
             }
         }
@@ -65,10 +65,17 @@ namespace Pearl.input
         #region Receive Methods
         private void ReceivePause(bool pause)
         {
-            GetLogicalComponent<InputReaderComponent>().Pause = pause;
+            DoReceivePause(pause);
         }
         #endregion
 
+        #endregion
+
+        #region Logical methods
+        private void DoReceivePause(bool pause)
+        {
+            GetLogicalComponent<InputReaderComponent>().Pause = pause;
+        }
         #endregion
     }
 }

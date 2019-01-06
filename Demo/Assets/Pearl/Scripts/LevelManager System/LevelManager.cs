@@ -19,7 +19,9 @@ namespace Pearl.level
         private GameObject poolPrefab;
         #endregion
 
+        #region Private fields
         private PauseComponents pauseComponent;
+        #endregion
 
         #region Unity CallBacks
         protected override void OnAwake()
@@ -44,6 +46,8 @@ namespace Pearl.level
         }
         #endregion
 
+        #region Interface methods
+
         #region Add/Remove methods in events
         protected override void SubscribeEvents()
         {
@@ -59,7 +63,16 @@ namespace Pearl.level
         #region Receive Methods
         private void ReceivePause(bool pause)
         {
-            pauseComponent.PauseControl(pause);
+            DoReceivePause(pause);
+        }
+        #endregion
+
+        #endregion
+
+        #region Logical methods
+        private void DoReceivePause(bool pause)
+        {
+            pauseComponent.DoControlPause(pause);
         }
         #endregion
     }

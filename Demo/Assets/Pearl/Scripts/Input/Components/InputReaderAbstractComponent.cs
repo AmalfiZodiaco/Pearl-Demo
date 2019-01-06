@@ -9,16 +9,21 @@ namespace Pearl.input
     /// </summary>
     public abstract class InputReaderAbstractComponent : LogicalComponent
     {
+        #region Protected fields
         protected bool isPause;
+        #endregion
+
+        #region Proprieties
         /// <summary>
         /// Sets true if the game is paused
         /// </summary>
         public bool Pause { set { isPause = value; } }
+        #endregion
 
         #region Abstract Methods
-        public abstract void UpdateKeyboard();
+        public abstract void DoUpdateKeyboard();
 
-        public abstract void UpdateJoystick();
+        public abstract void DoUpdateJoystick();
         #endregion
     }
 }

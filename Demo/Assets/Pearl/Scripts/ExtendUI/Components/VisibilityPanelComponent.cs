@@ -14,7 +14,7 @@ namespace Pearl.UI
         private GameObject auxPanel;
         #endregion
 
-        #region Public Methods
+        #region Obey Methods
         /// <summary>
         /// Check if the object panel is the same as the active panel.
         /// </summary>
