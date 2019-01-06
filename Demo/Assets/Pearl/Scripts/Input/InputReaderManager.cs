@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using it.amalfi.Pearl.events;
+using Pearl.events;
 using System;
 
-namespace it.amalfi.Pearl.input
+namespace Pearl.input
 {
     /// <summary>
     /// The class that manages the input. In the update, it calls the 

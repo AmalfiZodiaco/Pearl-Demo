@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace it.demo
+namespace Pearl.Demo
 {
     public class ForceManagerPlayer : ForceManager
     {

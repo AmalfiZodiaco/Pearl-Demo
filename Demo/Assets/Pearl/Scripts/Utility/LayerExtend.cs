@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace it.amalfi.Pearl
+namespace Pearl
 {
     /// <summary>
     /// This class takes care of creating useful functions for manage the layer masks

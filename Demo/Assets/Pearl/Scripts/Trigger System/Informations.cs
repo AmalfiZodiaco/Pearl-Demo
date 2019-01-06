@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace it.amalfi.Pearl.actionTrigger
+namespace Pearl.actionTrigger
 {
     public struct Informations
     {

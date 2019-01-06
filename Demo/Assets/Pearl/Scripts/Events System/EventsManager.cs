@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace it.amalfi.Pearl.events
+namespace Pearl.events
 {
     /// <summary>
     /// This static class manages the communication between different gameobjects in a centralized way. 

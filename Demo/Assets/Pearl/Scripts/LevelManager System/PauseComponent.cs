@@ -1,9 +1,9 @@
-﻿using it.amalfi.Pearl.events;
+﻿using Pearl.events;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace it.amalfi.Pearl.level
+namespace Pearl.level
 {
     /// <summary>
     /// The class manages the pause in the level

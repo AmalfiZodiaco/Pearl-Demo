@@ -1,4 +1,4 @@
-﻿namespace it.amalfi.Pearl.audio
+﻿namespace Pearl.audio
 {
     public enum AudioEnum
     {

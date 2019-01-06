@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace it.amalfi.Pearl.clock
+namespace Pearl.clock
 {
     /// <summary>
     /// The class is the abstract clock, it has the  fundamental methods 

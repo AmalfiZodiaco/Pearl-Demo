@@ -1,7 +1,7 @@
-﻿using it.amalfi.Pearl.events;
+﻿using Pearl.events;
 using UnityEngine;
 
-namespace it.amalfi.Pearl
+namespace Pearl
 {
     /// <summary>
     //  The class makes the unique and indestructible gameobject between the scenes

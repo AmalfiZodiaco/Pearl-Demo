@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace it.amalfi.Pearl.multitags
+namespace Pearl.multitags
 {
     /// <summary>
     /// Static class that allow you to take advantage of the multitags

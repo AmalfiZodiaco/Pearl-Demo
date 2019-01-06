@@ -1,9 +1,9 @@
-﻿using it.amalfi.Pearl.events;
+﻿using Pearl.events;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace it.amalfi.Pearl.pools
+namespace Pearl.pools
 {
     /// <summary>
     /// This class creates all the pools in the scene

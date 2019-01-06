@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using it.amalfi.Pearl;
-using it.amalfi.Pearl.events;
+using Pearl;
+using Pearl.events;
 
-namespace it.demo
+namespace Pearl.Demo
 {
     public class ForceManagerSystem : LogicalSimpleManager
     {

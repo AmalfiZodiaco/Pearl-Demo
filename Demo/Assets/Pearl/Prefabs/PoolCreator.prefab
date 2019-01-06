@@ -51,8 +51,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce2b83b3a02599943b6699d0d2b53791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs:
-  - obj: {fileID: 1276124915045380, guid: 1ab7b7a5b846afd4ca61a396e1f1a299, type: 2}
-    numberElementsInPool: 10
-  - obj: {fileID: 1215201833114664, guid: 8a1c7f21c53c44b419c6edb43ef90883, type: 2}
-    numberElementsInPool: 10
+  prefabs: []

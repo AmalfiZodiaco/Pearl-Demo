@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace it.amalfi.Pearl.pools
+namespace Pearl.pools
 {
     /// <summary>
     /// This class manages every pool of each prefab

@@ -1,4 +1,4 @@
-﻿namespace it.amalfi.Pearl.graph
+﻿namespace Pearl.graph
 {
     public enum TypeGraph
     {

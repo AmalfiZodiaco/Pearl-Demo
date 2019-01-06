@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using it.amalfi.Pearl.events;
-using it.amalfi.Pearl.clock;
+using Pearl.events;
+using Pearl.clock;
 
-namespace it.amalfi.Pearl.frameRate
+namespace Pearl.frameRate
 {
     /// <summary>
     /// This singleton class calculates the frameRate

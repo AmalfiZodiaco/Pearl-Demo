@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using it.amalfi.Pearl;
+using Pearl;
 
-namespace it.demo
+namespace Pearl.Demo
 {
     public class ForceManager
     {

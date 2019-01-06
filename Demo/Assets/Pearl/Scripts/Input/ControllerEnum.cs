@@ -1,4 +1,4 @@
-﻿namespace it.amalfi.Pearl.input
+﻿namespace Pearl.input
 {
     /// <summary>
     /// The type of controller

@@ -1,8 +1,8 @@
-﻿using it.amalfi.Pearl.events;
+﻿using Pearl.events;
 using System.Collections.Generic;
 using System;
 
-namespace it.amalfi.Pearl.audio
+namespace Pearl.audio
 {
     /// <summary>
     /// A class that represents a list of mixer channel (AudioContainer).

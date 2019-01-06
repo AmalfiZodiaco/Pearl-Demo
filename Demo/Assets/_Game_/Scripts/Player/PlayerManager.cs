@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
-using it.amalfi.Pearl.events;
-using it.amalfi.Pearl.multitags;
-using it.amalfi.Pearl;
-using it.amalfi.Pearl.input;
-using it.demo.power;
+using Pearl.events;
+using Pearl.multitags;
+using Pearl;
+using Pearl.input;
+using Pearl.Demo.power;
 using System.Reflection;
 
-namespace it.demo.player
+namespace Pearl.Demo.player
 {
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(SpriteRenderer))]

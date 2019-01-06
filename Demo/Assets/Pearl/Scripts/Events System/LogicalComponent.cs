@@ -1,4 +1,4 @@
-﻿namespace it.amalfi.Pearl.events
+﻿namespace Pearl.events
 {
     /// <summary>
     /// The father of all the components of the manager

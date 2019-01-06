@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-namespace it.demo.power
+namespace Pearl.Demo.power
 {
     [Serializable]
     public struct PowerStruct

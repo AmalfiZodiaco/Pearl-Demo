@@ -1,4 +1,4 @@
-﻿namespace it.amalfi.Pearl.events
+﻿namespace Pearl.events
 {
     /// <summary>
     /// A event handler with two generic parameters

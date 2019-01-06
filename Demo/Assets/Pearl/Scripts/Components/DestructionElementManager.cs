@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 using System;
-using it.amalfi.Pearl.events;
+using Pearl.events;
 
-namespace it.amalfi.Pearl
+namespace Pearl
 {
     /// <summary>
     /// This component handles the destruction of a GameObject: it can destroy 

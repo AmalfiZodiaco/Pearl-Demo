@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace it.amalfi.Pearl.clock
+namespace Pearl.clock
 {
     /// <summary>
     /// The class performs a timer

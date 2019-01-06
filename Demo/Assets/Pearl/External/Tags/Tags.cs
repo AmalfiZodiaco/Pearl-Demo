@@ -1,4 +1,4 @@
-﻿namespace it.amalfi.Pearl.multitags
+﻿namespace Pearl.multitags
 {
     /// <summary>
     /// The tags in the game

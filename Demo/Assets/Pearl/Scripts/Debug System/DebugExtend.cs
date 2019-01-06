@@ -1,7 +1,7 @@
-﻿using it.amalfi.Pearl.events;
+﻿using Pearl.events;
 using UnityEngine;
 
-namespace it.amalfi.Pearl.debug
+namespace Pearl.debug
 {
     /// <summary>
     /// The static class that is able to debug even in Build version.

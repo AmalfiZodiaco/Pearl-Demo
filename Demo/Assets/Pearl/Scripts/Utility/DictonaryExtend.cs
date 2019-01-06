@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace it.amalfi.Pearl
+namespace Pearl
 {
     /// <summary>
     /// This class extends the dictonary

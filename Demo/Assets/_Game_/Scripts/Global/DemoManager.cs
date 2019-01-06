@@ -1,4 +1,4 @@
-﻿using it.amalfi.Pearl.game;
+﻿using Pearl.game;
 
 public class DemoManager : GameManager
 {

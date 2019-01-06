@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace it.amalfi.Pearl.graph
+namespace Pearl.graph
 {
     public class Graph<T>
     {

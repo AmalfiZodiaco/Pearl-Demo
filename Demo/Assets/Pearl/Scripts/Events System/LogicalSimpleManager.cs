@@ -1,7 +1,7 @@
-﻿using it.amalfi.Pearl.multitags;
+﻿using Pearl.multitags;
 using UnityEngine;
 
-namespace it.amalfi.Pearl.events
+namespace Pearl.events
 {
     /// <summary>
     /// The abstract father of all the simple Manager (manager without components)

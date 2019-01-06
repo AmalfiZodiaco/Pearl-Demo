@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace it.demo.UI
+namespace Pearl.Demo.UI
 {
     [RequireComponent(typeof(RectTransform))]
     public class Bar : MonoBehaviour

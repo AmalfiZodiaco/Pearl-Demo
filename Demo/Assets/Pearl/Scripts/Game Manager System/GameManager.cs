@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
-using it.amalfi.Pearl.events;
-using it.amalfi.Pearl.audio;
+using Pearl.events;
+using Pearl.audio;
 
-namespace it.amalfi.Pearl.game
+namespace Pearl.game
 {
     /// <summary>
     /// The general gamemanager. It will be the father of every game-specific game manager

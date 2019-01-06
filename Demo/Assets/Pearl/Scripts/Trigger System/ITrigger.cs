@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using it.amalfi.Pearl.multitags;
+using Pearl.multitags;
 
-namespace it.amalfi.Pearl.actionTrigger
+namespace Pearl.actionTrigger
 {
     public interface ITrigger
     {

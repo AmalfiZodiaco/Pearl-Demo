@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace it.amalfi.Pearl
+namespace Pearl
 {
     public static class SpriteExtend
     {

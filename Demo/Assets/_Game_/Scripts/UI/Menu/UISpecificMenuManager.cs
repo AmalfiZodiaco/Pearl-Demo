@@ -1,10 +1,10 @@
-﻿using it.amalfi.Pearl.audio;
-using it.amalfi.Pearl.UI;
+﻿using Pearl.audio;
+using Pearl.UI;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using it.amalfi.Pearl;
-using it.amalfi.Pearl.events;
+using Pearl;
+using Pearl.events;
 
 namespace it.demo.UI
 {

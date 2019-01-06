@@ -1,8 +1,8 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
-using it.amalfi.Pearl.events;
+using Pearl.events;
 
-namespace it.amalfi.Pearl.frameRate
+namespace Pearl.frameRate
 {
     /// <summary>
     /// The class that writes the frameRate in UI

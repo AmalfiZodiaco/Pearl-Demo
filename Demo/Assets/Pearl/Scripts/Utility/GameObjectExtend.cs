@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using it.amalfi.Pearl.multitags;
-using it.amalfi.Pearl.pools;
+using Pearl.multitags;
+using Pearl.pools;
 using System.Collections.Generic;
 
-namespace it.amalfi.Pearl
+namespace Pearl
 {
     /// <summary>
     /// A class that extends the gameobject class

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace it.demo.graphic
+namespace Pearl.Demo.graphic
 {
     public class OrderLayerSpriteDynamic : OrderLayerSpriteStatic
     {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using it.amalfi.Pearl.events;
+using Pearl.events;
 
-namespace it.demo.camera
+namespace Pearl.Demo.camera
 {
     public class CameraManager : LogicalSimpleManager
     {

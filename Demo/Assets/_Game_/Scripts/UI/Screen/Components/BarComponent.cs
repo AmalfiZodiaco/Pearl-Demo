@@ -1,7 +1,7 @@
-﻿using it.amalfi.Pearl.events;
+﻿using Pearl.events;
 using UnityEngine;
 
-namespace it.demo.UI
+namespace Pearl.Demo.UI
 {
     public class BarComponent : LogicalComponent
     {

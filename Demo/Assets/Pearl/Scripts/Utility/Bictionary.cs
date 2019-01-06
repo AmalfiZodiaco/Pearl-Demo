@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace it.amalfi.Pearl
+namespace Pearl
 {
     /// <summary>
     /// A dictionary that can be read either using the first parameter as a key 

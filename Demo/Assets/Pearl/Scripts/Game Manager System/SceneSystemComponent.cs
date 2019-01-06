@@ -1,7 +1,7 @@
 ﻿using UnityEngine.SceneManagement;
-using it.amalfi.Pearl.events;
+using Pearl.events;
 
-namespace it.amalfi.Pearl.game
+namespace Pearl.game
 {
     /// <summary>
     /// A class that manages the scene change

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using it.amalfi.Pearl.actionTrigger;
-using it.amalfi.Pearl.multitags;
-using it.amalfi.Pearl.events;
+using Pearl.actionTrigger;
+using Pearl.multitags;
+using Pearl.events;
 
-namespace it.demo.test
+namespace Paerl.Demo.test
 {
     public class Test : MonoBehaviour, ITrigger
     {

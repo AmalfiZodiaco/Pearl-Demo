@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using it.amalfi.Pearl.clock;
+using Pearl.clock;
 using UnityEngine.Audio;
 
-namespace it.amalfi.Pearl.audio
+namespace Pearl.audio
 {
     /// <summary>
     /// A class that represents a mixer channel. In this class the volume of the 

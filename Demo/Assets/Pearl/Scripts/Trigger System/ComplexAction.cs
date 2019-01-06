@@ -1,8 +1,8 @@
-﻿using it.amalfi.Pearl.events;
+﻿using Pearl.events;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace it.amalfi.Pearl.actionTrigger
+namespace Pearl.actionTrigger
 {
     public abstract class ComplexAction : LogicalSimpleManager
     {

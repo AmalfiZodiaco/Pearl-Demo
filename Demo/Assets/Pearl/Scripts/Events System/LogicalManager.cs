@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 
-namespace it.amalfi.Pearl.events
+namespace Pearl.events
 {
     /// <summary>
     /// The abstract father of all the complex Manager (manager with components)

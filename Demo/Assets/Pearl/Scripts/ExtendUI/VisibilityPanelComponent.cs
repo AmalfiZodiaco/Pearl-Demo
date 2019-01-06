@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using it.amalfi.Pearl.multitags;
-using it.amalfi.Pearl.events;
+using Pearl.multitags;
+using Pearl.events;
 
-namespace it.amalfi.Pearl.UI
+namespace Pearl.UI
 {
     /// <summary>
     /// This component is responsible for activating or deactivating panels

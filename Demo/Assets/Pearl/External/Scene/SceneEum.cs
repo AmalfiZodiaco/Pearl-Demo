@@ -1,4 +1,4 @@
-﻿namespace it.amalfi.Pearl.game
+﻿namespace Pearl.game
 {
     /// <summary>
     /// This enumerator represent the scenes in the game.
@@ -8,5 +8,6 @@
         Null,
         StartMenu,
         Level,
+        //-------------------//
     }
 }

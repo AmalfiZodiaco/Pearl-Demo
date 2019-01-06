@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using it.amalfi.Pearl.actionTrigger;
-using it.amalfi.Pearl.events;
-using it.amalfi.Pearl.input;
-using it.demo.power;
+using Pearl.actionTrigger;
+using Pearl.events;
+using Pearl.input;
+using Pearl.Demo.power;
 
-namespace it.demo.player
+namespace Pearl.Demo.player
 {
     public class PlayerPowerComponent : LogicalComponent
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace it.amalfi.Pearl
+namespace Pearl
 {
     /// <summary>
     /// A structure that represents a range of numbers

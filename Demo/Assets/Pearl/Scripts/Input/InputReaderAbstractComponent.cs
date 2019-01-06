@@ -1,8 +1,8 @@
-﻿using it.amalfi.Pearl.events;
+﻿using Pearl.events;
 using UnityEngine;
 using System;
 
-namespace it.amalfi.Pearl.input
+namespace Pearl.input
 {
     /// <summary>
     /// The abstract version of the class that actually reads the input(this class must implement it)

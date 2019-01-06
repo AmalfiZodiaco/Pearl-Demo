@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using it.amalfi.Pearl.events;
+using Pearl.events;
 
-namespace it.amalfi.Pearl.multitags
+namespace Pearl.multitags
 {
     /// <summary>
     /// Multitags in a gameobject

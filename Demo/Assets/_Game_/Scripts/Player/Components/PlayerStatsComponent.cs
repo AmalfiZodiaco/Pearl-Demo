@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System;
-using it.amalfi.Pearl.events;
-using it.amalfi.Pearl;
+using Pearl.events;
+using Pearl;
 
-namespace it.demo.player
+namespace Pearl.Demo.player
 {
     public class PlayerStatsComponent : LogicalComponent
     {

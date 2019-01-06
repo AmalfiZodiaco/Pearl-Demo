@@ -1,11 +1,11 @@
-﻿using it.amalfi.Pearl.events;
+﻿using Pearl.events;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using System;
-using it.amalfi.Pearl.clock;
+using Pearl.clock;
 
-namespace it.amalfi.Pearl.audio
+namespace Pearl.audio
 {
     /// <summary>
     ///  The singleton class automates the sound system using a mixer: examines its channels and creates a 

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using it.amalfi.Pearl.multitags;
-using it.amalfi.Pearl.events;
+using Pearl.multitags;
+using Pearl.events;
 
-namespace it.amalfi.Pearl.actionTrigger
+namespace Pearl.actionTrigger
 {
     /// <summary>
     /// This class examine every trigger events and sort them in specific components

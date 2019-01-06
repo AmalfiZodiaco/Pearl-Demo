@@ -1,7 +1,7 @@
-﻿using it.amalfi.Pearl.events;
+﻿using Pearl.events;
 using UnityEngine;
 
-namespace it.demo.graphic
+namespace Pearl.Demo.graphic
 {
     public class OrderLayerSpriteStatic : LogicalSimpleManager
     {

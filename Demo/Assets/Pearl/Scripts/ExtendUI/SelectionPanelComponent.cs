@@ -1,9 +1,9 @@
-﻿using it.amalfi.Pearl.events;
+﻿using Pearl.events;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace it.amalfi.Pearl.UI
+namespace Pearl.UI
 {
     /// <summary>
     //  the class manages the active buttons by putting them in a stack so that 

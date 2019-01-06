@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using it.amalfi.Pearl.multitags;
-using it.amalfi.Pearl;
+using Pearl.multitags;
+using Pearl;
 
-namespace it.amalfi.Pearl.pools
+namespace Pearl.pools
 {
     /// <summary>
     /// The class tha manages the specific pool

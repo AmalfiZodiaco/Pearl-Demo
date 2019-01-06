@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using it.amalfi.Pearl.events;
+using Pearl.events;
 using System;
-using it.amalfi.Pearl.game;
+using Pearl.game;
 
-namespace it.amalfi.Pearl.UI
+namespace Pearl.UI
 {
     /// <summary>
     /// The abstract class of the UI.This class must be the parent of every UI of the menu or pause.

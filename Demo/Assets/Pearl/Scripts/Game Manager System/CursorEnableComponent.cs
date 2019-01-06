@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using it.amalfi.Pearl.events;
+using Pearl.events;
 
-namespace it.amalfi.Pearl.game
+namespace Pearl.game
 {
     /// <summary>
     //  The class blocks and makes invisible the cursor mouse.

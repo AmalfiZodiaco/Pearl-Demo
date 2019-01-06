@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
-using it.amalfi.Pearl.events;
+using Pearl.events;
 using System;
 
-namespace it.demo.UI
+namespace Pearl.Demo.UI
 {
     public partial class ScreenUIManager : LogicalManager
     {

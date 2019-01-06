@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using it.amalfi.Pearl.actionTrigger;
-using it.amalfi.Pearl.multitags;
-using it.amalfi.Pearl;
-using it.amalfi.Pearl.events;
+using Pearl.actionTrigger;
+using Pearl.multitags;
+using Pearl;
+using Pearl.events;
 
-namespace it.demo.power
+namespace Pearl.Demo.power
 {
     public class Arrow : ComplexAction, ITrigger
     {

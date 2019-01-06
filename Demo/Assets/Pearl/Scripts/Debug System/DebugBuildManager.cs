@@ -1,8 +1,8 @@
-﻿using it.amalfi.Pearl.events;
+﻿using Pearl.events;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace it.amalfi.Pearl.debug
+namespace Pearl.debug
 {
     /// <summary>
     /// The singleton class handles debug writing in an UI.The class is activated only in the build version.

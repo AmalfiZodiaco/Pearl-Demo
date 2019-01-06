@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace it.amalfi.Pearl
+namespace Pearl
 {
     /// <summary>
     /// A class that extends the Quaternion class

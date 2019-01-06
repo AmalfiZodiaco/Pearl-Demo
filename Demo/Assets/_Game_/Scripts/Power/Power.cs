@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using it.amalfi.Pearl.multitags;
-using it.amalfi.Pearl;
+using Pearl.multitags;
+using Pearl;
 
-namespace it.demo.power
+namespace Pearl.Demo.power
 {
     public static class Power
     {
