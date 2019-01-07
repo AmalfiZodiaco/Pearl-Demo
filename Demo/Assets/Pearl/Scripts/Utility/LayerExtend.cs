@@ -10,6 +10,11 @@ namespace Pearl
     {
         private static List<string> auxListString;
         private static readonly byte numberCells = 32;
+		
+		static LayerExtend()
+        {
+            auxListString = new List<string>();
+        }
 
         #region Public Methods
         /// <summary>

@@ -12,6 +12,13 @@ namespace Pearl.multitags
         private static MultiTags[] auxArrayMultiTags;
         private static MultiTags auxMultiTags;
         private static GameObject[] auxArrayGameObject;
+		
+		#region Constructors
+        static MultiTagsManager()
+        {
+            auxListGameObject = new List<GameObject>();
+        }
+        #endregion
 
         #region Static Methods
         /// <summary>
