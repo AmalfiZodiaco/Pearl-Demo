@@ -30,6 +30,7 @@ namespace Pearl.audio
         public AudioContainer(string name)
         {
             this.Name = name;
+			volumeRange = new Range(0, 1);
             this.timer = new Timer();
         }
         #endregion
